@@ -110,11 +110,16 @@ $("#signOutBtn").onclick=async()=>{const {error}=await db.auth.signOut();if(erro
 $("#addTop").onclick=openListing;$("#addHero").onclick=openListing;$("#close").onclick=()=>$("#modal").close();$("#authClose").onclick=()=>$("#authModal").close();
 $("#authToggle").onclick=()=>{authMode=authMode==="login"?"signup":"login";updateAuthMode();};
 $("#authForm").onsubmit=async e=>{
- e.preventDefault();const f=new FormData(e.target),email=String(f.get("email")).trim(),password=String(f.get("password")),name=String(f.get("display_name")||"").trim();
- const result=authMode==="login"?await db.auth.signInWithPassword({email,password}):await db.auth.signUp({email,password,options:{data:{display_name:name||"Membre"}}});
- if(result.error){toast(result.error.message);return;}
- if(authMode==="signup"&&!result.data.session){toast("Compte créé. Vérifiez votre e-mail pour confirmer l’inscription.");$("#authModal").close();return;}
- currentUser=result.data.user;$("#authModal").close();syncAuth();toast(authMode==="login"?"Connexion réussie.":"Compte créé !");await loadListings();
+ e.preventDefault();
+ const f=new FormData(e.target),email=String(f.get("email")).trim(),password=String(f.get("password")),name=String(f.get("display_name")||"").trim();
+ const btn=$("#authSubmit"); if(btn)btn.disabled=true;
+ try {
+  const result=authMode==="login"?await db.auth.signInWithPassword({email,password}):await db.auth.signUp({email,password,options:{data:{display_name:name||"Membre"}}});
+  if(result.error){toast("Erreur : "+result.error.message);return;}
+  if(authMode==="signup"&&!result.data.session){toast("Inscription envoyée. Vérifiez votre e-mail et vos spams pour confirmer.");return;}
+  currentUser=result.data.user;$("#authModal").close();syncAuth();toast(authMode==="login"?"Connexion réussie.":"Compte créé !");await loadListings();
+ } catch(err){toast("Erreur lors de l'inscription : "+(err?.message||"réessayez."));}
+ finally {if(btn)btn.disabled=false;}
 };
 $("#listingForm").onsubmit=async e=>{
  e.preventDefault();if(!currentUser){toast("Connectez-vous d’abord.");return;}
