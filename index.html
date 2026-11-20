@@ -67,7 +67,15 @@ let category = "Tous", currentUser = null, authMode = "login", rows = [];
 const categories = ["Maison","Vêtements","Enfants","Loisirs","Bricolage","Autre"];
 const emoji = {Maison:"🏡",Vêtements:"👕",Enfants:"🧸",Loisirs:"🎨",Bricolage:"🛠️",Autre:"📦"};
 function esc(s){return String(s ?? "").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
-function toast(message){$("#toast").textContent=message;$("#toast").style.display="block";setTimeout(()=>$("#toast").style.display="none",3200);}
+function toast(message){
+ const auth=$("#authModal");
+ if(auth?.open){
+  let notice=$("#authNotice");
+  if(!notice){notice=document.createElement("div");notice.id="authNotice";notice.style.cssText="display:block;background:#fff1df;color:#743b08;border:1px solid #e7b36e;border-radius:12px;padding:12px;margin:10px 0;font-weight:600;position:relative;z-index:2";$("#authForm").insertBefore(notice,$("#authForm").querySelector(".formGrid"));}
+  notice.textContent=message;notice.scrollIntoView({block:"nearest"});return;
+ }
+ $("#toast").textContent=message;$("#toast").style.display="block";setTimeout(()=>$("#toast").style.display="none",3200);
+}
 function syncAuth(){const b=$("#authTop");b.textContent=currentUser?"Mon compte":"Connexion";$("#addTop").textContent=currentUser?"＋ Déposer une annonce":"＋ Se connecter pour donner";}
 async function openAccount(){if(!currentUser){openAuth();return;}$("#accountName").textContent=currentUser.user_metadata?.display_name||"Membre";$("#accountEmail").textContent=currentUser.email||"Adresse non disponible";$("#myListings").innerHTML='<div class="notice">Chargement de vos annonces…</div>';$("#accountModal").showModal();const {data,error}=await db.from("listings").select("id,title,category,city,status,created_at").eq("user_id",currentUser.id).order("created_at",{ascending:false}).limit(50);if(error){$("#myListings").innerHTML='<div class="notice">Impossible de charger vos annonces pour le moment.</div>';return;}if(!data?.length){$("#myListings").innerHTML='<div class="notice">Vous n’avez pas encore publié d’annonce.</div>';return;}$("#myListings").innerHTML=data.map(x=>'<div class="notice"><strong>'+esc(x.title)+'</strong><br>'+esc(x.category)+' · '+esc(x.city)+'<br><small>Statut : '+esc(x.status||"en attente")+'</small><div style="display:flex;gap:8px;margin-top:10px"><button type="button" class="btn light" data-edit-listing="'+esc(x.id)+'">Modifier</button><button type="button" class="btn plain" data-delete-listing="'+esc(x.id)+'">Supprimer</button></div></div>').join("");}
 function openListing(){if(!currentUser){openAuth();toast("Connectez-vous pour déposer une annonce.");return;}$("#modal").showModal();}
