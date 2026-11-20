@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#176b52"><link rel="manifest" href="manifest.webmanifest"><link rel="icon" href="icon.svg" type="image/svg+xml"><meta name="description" content="Le Grand Partage — donnez, trouvez et partagez près de chez vous.">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <title>Le Grand Partage — Donnons une seconde vie aux objets</title>
 <style>
 :root{--green:#176b52;--deep:#104b3b;--mint:#e8f4ee;--cream:#fbfaf6;--ink:#1d2b25;--muted:#66736c;--line:#e3e9e4;--orange:#e98b4a}
@@ -18,49 +19,84 @@ dialog{border:0;border-radius:20px;padding:0;width:min(540px,calc(100% - 28px));
 </style>
 </head>
 <body>
-<header><div class="wrap top"><a class="brand" href="#"><span class="logo">🤝</span>Le Grand Partage</a><nav class="nav"><button class="btn light" id="installApp" hidden>Installer l’application</button><button class="btn plain" id="howBtn">Comment ça marche</button><button class="btn primary" id="addTop">＋ Déposer une annonce</button></nav></div></header>
+<header><div class="wrap top"><a class="brand" href="#"><span class="logo">🤝</span>Le Grand Partage</a><nav class="nav"><button class="btn light" id="installApp" hidden>Installer l’application</button><button class="btn plain" id="howBtn">Comment ça marche</button><button class="btn light" id="authTop">Connexion</button><button class="btn primary" id="addTop">＋ Déposer une annonce</button></nav></div></header>
 <section class="hero"><div class="wrap heroGrid"><div><div class="eyebrow">Donner • Recevoir • Réutiliser</div><h1>Ce qui ne vous sert plus peut faire le bonheur d’un autre.</h1><p>Une plateforme de partage pour donner une seconde vie aux objets, créer du lien et consommer autrement.</p><button class="btn primary" id="addHero">Je partage un objet gratuitement</button><div class="stats"><div><b>♻️ Seconde vie</b>Moins de gaspillage</div><div><b>💚 Entraide</b>Plus de solidarité</div><div><b>📍 Près de chez vous</b>Du partage local</div></div></div><div class="heroArt" aria-hidden="true">🪴📚🧸</div></div></section>
 <main class="wrap"><div class="sectionHead"><div><div class="eyebrow">Les trouvailles du moment</div><h2>Les objets à partager</h2><p>Recherchez ce dont vous avez besoin ou proposez ce que vous n’utilisez plus.</p></div></div>
 <div class="filters"><input class="field" id="search" placeholder="🔎 Rechercher un objet, un mot-clé…" aria-label="Rechercher"><select class="field" id="sort"><option value="recent">Plus récents</option><option value="az">Nom A à Z</option></select></div>
 <div class="chips" id="chips"><button class="chip active" data-cat="Tous">Tout voir</button><button class="chip" data-cat="Maison">🏡 Maison</button><button class="chip" data-cat="Vêtements">👕 Vêtements</button><button class="chip" data-cat="Enfants">🧸 Enfants</button><button class="chip" data-cat="Loisirs">🎨 Loisirs</button><button class="chip" data-cat="Bricolage">🛠️ Bricolage</button><button class="chip" data-cat="Autre">📦 Autre</button></div>
 <div class="grid" id="listings"></div></main>
 <footer><div class="wrap foot"><div><strong>🤝 Le Grand Partage</strong><br>La solidarité donne une seconde vie aux objets.</div><div>Un projet indépendant dédié au partage et à l’entraide.</div></div></footer>
-<dialog id="modal"><form class="modal" id="listingForm"><div class="modalHead"><h2>Déposer une annonce</h2><button type="button" class="close" id="close">×</button></div><div class="formGrid"><label>Nom de l’objet<input class="field" name="title" required maxlength="70" placeholder="Ex. Fauteuil en bon état"></label><label>Catégorie<select class="field" name="category"><option>Maison</option><option>Vêtements</option><option>Enfants</option><option>Loisirs</option><option>Bricolage</option><option>Autre</option></select></label><label>Ville<input class="field" name="city" required maxlength="60" placeholder="Votre ville"></label><label>Description<textarea class="field" name="description" maxlength="400" placeholder="Décrivez l’objet et son état…"></textarea></label><label>Votre prénom ou pseudo<input class="field" name="owner" required maxlength="40" placeholder="Comment vous appeler ?"></label><button class="btn primary" type="submit">Publier mon annonce</button></div><div class="notice">Prototype en cours : les annonces ajoutées sont enregistrées sur cet appareil uniquement. Elles ne sont pas encore visibles par les autres visiteurs. Ne saisissez aucune information sensible.</div></form></dialog>
+<dialog id="authModal"><form class="modal" id="authForm"><div class="modalHead"><h2 id="authTitle">Connexion</h2><button type="button" class="close" id="authClose">×</button></div><div class="formGrid"><label id="nameWrap" hidden>Prénom ou pseudo<input class="field" name="display_name" maxlength="60" placeholder="Votre pseudo"></label><label>Adresse e-mail<input class="field" name="email" type="email" autocomplete="email" required placeholder="vous@exemple.fr"></label><label>Mot de passe<input class="field" name="password" type="password" minlength="6" autocomplete="current-password" required placeholder="6 caractères minimum"></label><button class="btn primary" type="submit" id="authSubmit">Se connecter</button><button class="btn plain" type="button" id="authToggle">Créer un compte</button></div><div class="notice">Votre adresse e-mail ne sera pas affichée dans les annonces.</div></form></dialog>
+<dialog id="modal"><form class="modal" id="listingForm"><div class="modalHead"><h2>Déposer une annonce</h2><button type="button" class="close" id="close">×</button></div><div class="formGrid"><label>Nom de l’objet<input class="field" name="title" required maxlength="70" placeholder="Ex. Fauteuil en bon état"></label><label>Catégorie<select class="field" name="category"><option>Maison</option><option>Vêtements</option><option>Enfants</option><option>Loisirs</option><option>Bricolage</option><option>Autre</option></select></label><label>Ville<input class="field" name="city" required maxlength="60" placeholder="Votre ville"></label><label>Description<textarea class="field" name="description" maxlength="400" placeholder="Décrivez l’objet et son état…"></textarea></label><label>Photo (facultatif)<input class="field" name="photo" type="file" accept="image/jpeg,image/png,image/webp"></label><button class="btn primary" type="submit">Publier mon annonce</button></div><div class="notice">Les annonces publiées seront visibles par tous les membres. Évitez d’indiquer votre adresse exacte.</div></form></dialog>
 <div class="toast" id="toast"></div>
 <script>
-const seed=[
-{id:1,title:"Fauteuil confortable",category:"Maison",city:"À proximité",description:"Fauteuil en bon état, prêt pour une nouvelle maison.",owner:"Le Grand Partage",emoji:"🪑",date:3},
-{id:2,title:"Livres à partager",category:"Loisirs",city:"À proximité",description:"Quelques livres à offrir à des lecteurs curieux.",owner:"Le Grand Partage",emoji:"📚",date:2},
-{id:3,title:"Manteau chaud",category:"Vêtements",city:"À proximité",description:"Manteau propre et en bon état.",owner:"Le Grand Partage",emoji:"🧥",date:1},
-{id:4,title:"Jouets pour enfants",category:"Enfants",city:"À proximité",description:"Des jouets qui attendent de nouveaux compagnons.",owner:"Le Grand Partage",emoji:"🧸",date:4},
-{id:5,title:"Boîte à outils",category:"Bricolage",city:"À proximité",description:"Outils utiles pour les petits travaux.",owner:"Le Grand Partage",emoji:"🛠️",date:5},
-{id:6,title:"Poussette",category:"Enfants",city:"À proximité",description:"Poussette à donner pour dépanner une famille.",owner:"Le Grand Partage",emoji:"👶",date:6}
-];
-let items=[];try{items=JSON.parse(localStorage.getItem("gdp-items")||"[]")}catch(e){items=[]}
-let category="Tous";
-const $=s=>document.querySelector(s);
-function all(){return [...items,...seed]}
-function render(){let q=$("#search").value.toLocaleLowerCase("fr"),a=all().filter(x=>(category==="Tous"||x.category===category)&&[x.title,x.description,x.city,x.category].join(" ").toLocaleLowerCase("fr").includes(q));if($("#sort").value==="az")a.sort((x,y)=>x.title.localeCompare(y.title,"fr"));else a.sort((x,y)=>y.date-x.date);$("#listings").innerHTML=a.length?a.map(x=>'<article class="card"><div class="photo"><span class="tag">'+x.category+'</span>'+x.emoji+'</div><div class="cardBody"><h3>'+esc(x.title)+'</h3><p>'+esc(x.description||"Objet à partager gratuitement.")+'</p><div class="meta"><span>📍 '+esc(x.city)+'</span><span>Par '+esc(x.owner)+'</span></div></div></article>').join(""):'<div class="empty">Aucun objet ne correspond à votre recherche.<br>Essayez un autre mot ou une autre catégorie.</div>'}
-function esc(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
-function open(){ $("#modal").showModal() }function close(){ $("#modal").close() }
-$("#addTop").onclick=open;$("#addHero").onclick=open;$("#close").onclick=close;$("#search").oninput=render;$("#sort").onchange=render;
-$("#chips").onclick=e=>{let b=e.target.closest("button[data-cat]");if(!b)return;category=b.dataset.cat;document.querySelectorAll(".chip").forEach(x=>x.classList.toggle("active",x===b));render()};
-$("#listingForm").onsubmit=e=>{e.preventDefault();let f=new FormData(e.target),title=f.get("title").trim();if(!title)return;items.unshift({id:Date.now(),title,category:f.get("category"),city:f.get("city").trim(),description:f.get("description").trim(),owner:f.get("owner").trim(),emoji:({Maison:"🏡",Vêtements:"👕",Enfants:"🧸",Loisirs:"🎨",Bricolage:"🛠️",Autre:"📦"})[f.get("category")],date:Date.now()});try{localStorage.setItem("gdp-items",JSON.stringify(items));}catch(err){}e.target.reset();close();category="Tous";document.querySelectorAll(".chip").forEach(x=>x.classList.toggle("active",x.dataset.cat==="Tous"));render();$("#toast").textContent="Annonce ajoutée sur cet appareil.";$("#toast").style.display="block";setTimeout(()=>$("#toast").style.display="none",2800)};
-$("#howBtn").onclick=()=>alert("1. Parcourez les objets proposés.\n2. Déposez une annonce pour donner un objet.\n3. Contact et partage entre membres seront ajoutés avec la base de données.");
-render();
-let installPrompt=null;
-const installButton=$("#installApp");
-window.addEventListener("beforeinstallprompt", event => { event.preventDefault(); installPrompt=event; installButton.hidden=false; });
-installButton.addEventListener("click", async () => {
-  if (!installPrompt) return;
-  installPrompt.prompt();
-  await installPrompt.userChoice;
-  installPrompt=null;
-  installButton.hidden=true;
-});
-window.addEventListener("appinstalled", () => { installButton.hidden=true; });
-if ("serviceWorker" in navigator && location.protocol === "https:") {
-  window.addEventListener("load", () => navigator.serviceWorker.register("/le-grand-partage/service-worker.js").catch(() => {}));
+const SUPABASE_URL = "https://lioydkmparojxbsaydzo.supabase.co";
+const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_009ydpNaq-NVY0f6kaJ7jQ_83os7Il8";
+const db = window.supabase.createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY);
+const $ = s => document.querySelector(s);
+let category = "Tous", currentUser = null, authMode = "login", rows = [];
+const categories = ["Maison","Vêtements","Enfants","Loisirs","Bricolage","Autre"];
+const emoji = {Maison:"🏡",Vêtements:"👕",Enfants:"🧸",Loisirs:"🎨",Bricolage:"🛠️",Autre:"📦"};
+function esc(s){return String(s ?? "").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
+function toast(message){$("#toast").textContent=message;$("#toast").style.display="block";setTimeout(()=>$("#toast").style.display="none",3200);}
+function syncAuth(){const b=$("#authTop");b.textContent=currentUser?"Mon compte":"Connexion";$("#addTop").textContent=currentUser?"＋ Déposer une annonce":"＋ Se connecter pour donner";}
+function openListing(){if(!currentUser){openAuth();toast("Connectez-vous pour déposer une annonce.");return;}$("#modal").showModal();}
+function openAuth(){authMode="login";updateAuthMode();$("#authModal").showModal();}
+function updateAuthMode(){$("#authTitle").textContent=authMode==="login"?"Connexion":"Créer un compte";$("#authSubmit").textContent=authMode==="login"?"Se connecter":"Créer mon compte";$("#authToggle").textContent=authMode==="login"?"Créer un compte":"J’ai déjà un compte";$("#nameWrap").hidden=authMode==="login";}
+async function loadListings(){
+  $("#listings").innerHTML='<div class="empty">Chargement des annonces…</div>';
+  const {data,error}=await db.from("listings").select("id,user_id,title,category,city,description,image_url,status,created_at").eq("status","available").order("created_at",{ascending:false}).limit(100);
+  if(error){$("#listings").innerHTML='<div class="empty">Impossible de charger les annonces pour le moment. Vérifiez la connexion à Supabase.</div>';console.error(error);return;}
+  rows=data||[];
+  const ids=[...new Set(rows.map(x=>x.user_id))];
+  let profiles={};
+  if(ids.length){const p=await db.from("profiles").select("id,display_name").in("id",ids);if(!p.error)(p.data||[]).forEach(x=>profiles[x.id]=x.display_name);}
+  render(profiles);
 }
+let profileNames={};
+function render(profiles=profileNames){
+  profileNames=profiles;
+  const q=$("#search").value.toLocaleLowerCase("fr");
+  let a=rows.filter(x=>(category==="Tous"||x.category===category)&&[x.title,x.description,x.city,x.category].join(" ").toLocaleLowerCase("fr").includes(q));
+  if($("#sort").value==="az")a.sort((x,y)=>x.title.localeCompare(y.title,"fr"));
+  if(!a.length){$("#listings").innerHTML='<div class="empty">Aucune annonce disponible pour le moment.<br>Vous pouvez être parmi les premiers à partager un objet !</div>';return;}
+  $("#listings").innerHTML=a.map(x=>'<article class="card"><div class="photo">'+(x.image_url?'<img src="'+esc(x.image_url)+'" alt="" style="width:100%;height:100%;object-fit:cover">':emoji[x.category]||"📦")+'<span class="tag">'+esc(x.category)+'</span></div><div class="cardBody"><h3>'+esc(x.title)+'</h3><p>'+esc(x.description||"Objet à partager gratuitement.")+'</p><div class="meta"><span>📍 '+esc(x.city)+'</span><span>Par '+esc(profiles[x.user_id]||"Membre")+'</span></div></div></article>').join("");
+}
+$("#authTop").onclick=()=>currentUser?db.auth.signOut().then(()=>toast("Vous êtes déconnecté.")):openAuth();
+$("#addTop").onclick=openListing;$("#addHero").onclick=openListing;$("#close").onclick=()=>$("#modal").close();$("#authClose").onclick=()=>$("#authModal").close();
+$("#authToggle").onclick=()=>{authMode=authMode==="login"?"signup":"login";updateAuthMode();};
+$("#authForm").onsubmit=async e=>{
+ e.preventDefault();const f=new FormData(e.target),email=String(f.get("email")).trim(),password=String(f.get("password")),name=String(f.get("display_name")||"").trim();
+ const result=authMode==="login"?await db.auth.signInWithPassword({email,password}):await db.auth.signUp({email,password,options:{data:{display_name:name||"Membre"}}});
+ if(result.error){toast(result.error.message);return;}
+ if(authMode==="signup"&&!result.data.session){toast("Compte créé. Vérifiez votre e-mail pour confirmer l’inscription.");$("#authModal").close();return;}
+ currentUser=result.data.user;$("#authModal").close();syncAuth();toast(authMode==="login"?"Connexion réussie.":"Compte créé !");await loadListings();
+};
+$("#listingForm").onsubmit=async e=>{
+ e.preventDefault();if(!currentUser){toast("Connectez-vous d’abord.");return;}
+ const f=new FormData(e.target),title=String(f.get("title")).trim(),cat=String(f.get("category")),city=String(f.get("city")).trim(),description=String(f.get("description")).trim(),file=f.get("photo");
+ let image_url=null;
+ if(file&&file.size){
+   if(file.size>5*1024*1024){toast("La photo doit faire 5 Mo maximum.");return;}
+   const ext=(file.name.split(".").pop()||"jpg").toLowerCase().replace(/[^a-z0-9]/g,"")||"jpg";
+   const path=currentUser.id+"/"+crypto.randomUUID()+"."+ext;
+   const up=await db.storage.from("listing-photos").upload(path,file,{contentType:file.type,upsert:false});
+   if(up.error){toast("Échec de l’envoi de la photo : "+up.error.message);return;}
+   image_url=db.storage.from("listing-photos").getPublicUrl(path).data.publicUrl;
+ }
+ const {error}=await db.from("listings").insert({user_id:currentUser.id,title,category:cat,city,description,image_url});
+ if(error){toast("Publication impossible : "+error.message);return;}
+ e.target.reset();$("#modal").close();toast("Annonce publiée et partagée avec la communauté !");await loadListings();
+};
+$("#search").oninput=()=>render();$("#sort").onchange=()=>render();
+$("#chips").onclick=e=>{const b=e.target.closest("button[data-cat]");if(!b)return;category=b.dataset.cat;document.querySelectorAll(".chip").forEach(x=>x.classList.toggle("active",x===b));render();};
+$("#howBtn").onclick=()=>alert("1. Créez un compte gratuit.\n2. Parcourez les objets proposés.\n3. Publiez gratuitement ce que vous souhaitez donner.\n4. Les annonces sont partagées avec tous les visiteurs.");
+db.auth.getSession().then(async({data})=>{currentUser=data.session?.user||null;syncAuth();await loadListings();});
+db.auth.onAuthStateChange((_event,session)=>{currentUser=session?.user||null;syncAuth();});
+let installPrompt=null;const installButton=$("#installApp");
+window.addEventListener("beforeinstallprompt",event=>{event.preventDefault();installPrompt=event;installButton.hidden=false;});
+installButton.addEventListener("click",async()=>{if(!installPrompt)return;installPrompt.prompt();await installPrompt.userChoice;installPrompt=null;installButton.hidden=true;});
+window.addEventListener("appinstalled",()=>{installButton.hidden=true;});
+if("serviceWorker" in navigator&&location.protocol==="https:")window.addEventListener("load",()=>navigator.serviceWorker.register("/le-grand-partage/service-worker.js").catch(()=>{}));
 </script>
 </body></html>
