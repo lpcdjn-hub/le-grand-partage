@@ -1,24 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-<defs>
- <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#36c96b"/><stop offset="1" stop-color="#075c37"/></linearGradient>
- <linearGradient id="sea" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#4bd2ff"/><stop offset="1" stop-color="#0875d1"/></linearGradient>
- <linearGradient id="land" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#d6f36b"/><stop offset="1" stop-color="#4baf42"/></linearGradient>
-</defs>
-<rect width="512" height="512" rx="108" fill="#f3fff1"/>
-<circle cx="256" cy="236" r="158" fill="url(#sea)" stroke="#fff" stroke-width="8"/>
-<path d="M161 126l38 9 14 26-16 23 12 25-26 20-39-12-18-34 12-37zM252 88l33 11 18 31-18 20 9 25-30 17-24-20-29-3-8-30 25-25zM319 176l43-8 31 25-8 37-35 9-22 35-28-12 6-39-20-20zM215 253l28-14 25 16 2 39-26 29-33-16-14-32zM296 292l34-20 27 17-7 31-32 18-29-18z" fill="url(#land)" stroke="#d9ff9a" stroke-width="4" stroke-linejoin="round"/>
-<g fill="none" stroke="#138c42" stroke-width="31" stroke-linecap="round" stroke-linejoin="round">
- <path d="M126 174c21-69 85-112 153-110 35 1 67 14 91 37"/>
- <path d="M382 126c43 51 53 123 25 184-13 29-34 53-61 69"/>
- <path d="M313 389c-67 27-143 8-188-44-23-27-36-61-37-96"/>
-</g>
-<g fill="#138c42">
- <path d="M345 68l57 29-54 33z"/>
- <path d="M426 277l-8 65-48-39z"/>
- <path d="M89 318l-20-62 62 14z"/>
-</g>
-<circle cx="256" cy="238" r="158" fill="none" stroke="#fff" stroke-width="7"/>
-<rect x="48" y="345" width="416" height="112" rx="30" fill="#075c37" stroke="#fff" stroke-width="6"/>
-<text x="256" y="390" text-anchor="middle" font-family="Arial,sans-serif" font-size="36" font-weight="700" fill="#fff">Le Grand</text>
-<text x="256" y="435" text-anchor="middle" font-family="Arial,sans-serif" font-size="43" font-weight="800" fill="#ffd52a">Partage</text>
-</svg>
+<defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#e7f6e5"/><stop offset="1" stop-color="#f9efda"/></linearGradient><linearGradient id="sea" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#69d5f2"/><stop offset="1" stop-color="#1174bd"/></linearGradient><linearGradient id="green" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#9bdd4c"/><stop offset="1" stop-color="#126d4b"/></linearGradient></defs>
+<rect width="512" height="512" rx="110" fill="url(#bg)"/><circle cx="256" cy="250" r="153" fill="url(#sea)" stroke="#fff" stroke-width="10"/>
+<path d="M165 151l40 8 15 27-18 22 13 25-27 21-39-13-18-34 12-37zM260 118l33 11 17 31-17 20 9 25-29 17-25-20-29-3-8-29 25-25zM326 207l39-8 30 24-8 36-35 10-23 34-27-12 5-39-20-20zM220 282l29-15 26 17 2 38-26 29-32-16-15-32z" fill="#92d94d" stroke="#dfffaa" stroke-width="4"/>
+<g fill="none" stroke="url(#green)" stroke-width="29" stroke-linecap="round" stroke-linejoin="round"><path d="M124 176c26-74 99-114 172-100 35 7 64 25 86 49"/><path d="M382 125l-8 55-48-33"/><path d="M390 306c-32 70-110 106-184 83-30-9-55-25-75-48"/><path d="M130 348l4-56 48 34"/><path d="M139 246c-3-59 34-110 83-136"/></g><g fill="#16714e"><path d="M225 106l-49 20 39 36z"/><path d="M394 298l-9 57-44-32z"/></g><text x="256" y="248" text-anchor="middle" font-family="Georgia,serif" font-size="25" font-weight="700" fill="#fff" stroke="#145b87" stroke-width="1" paint-order="stroke">I Have A Dream</text>
+<rect x="50" y="390" width="412" height="90" rx="22" fill="#8b552c" stroke="#70401f" stroke-width="5"/><path d="M67 407h378M67 462h378" stroke="#d7a56a" stroke-width="3" opacity=".5"/><text x="256" y="425" text-anchor="middle" font-family="Georgia,serif" font-size="22" font-weight="700" fill="#fff4d8">Donner, Partager</text><text x="256" y="453" text-anchor="middle" font-family="Georgia,serif" font-size="22" font-weight="700" fill="#fff4d8">et Recommencer</text></svg>

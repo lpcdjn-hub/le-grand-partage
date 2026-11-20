@@ -1,17 +1,13 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Le Grand Partage">
-<defs><linearGradient id="earth" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#58c8f5"/><stop offset="1" stop-color="#1475c4"/></linearGradient><linearGradient id="green" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#8cdb44"/><stop offset="1" stop-color="#176b52"/></linearGradient></defs>
-<circle cx="256" cy="256" r="218" fill="#f4fff2"/>
-<circle cx="256" cy="256" r="144" fill="url(#earth)" stroke="#fff" stroke-width="9"/>
-<path d="M184 135l38 9 18 28-18 21-29-7-16-28zM279 112l32 10 18 29-15 18 8 25-28 17-24-19-23-4-7-28 24-25zM324 230l37-9 27 23-5 31-34 10-24 31-26-11 4-36-20-18zM220 265l29-16 26 17 3 36-25 29-32-16-15-29z" fill="#8bd34a" stroke="#dfff9b" stroke-width="4"/>
-<g fill="none" stroke="url(#green)" stroke-width="32" stroke-linecap="round" stroke-linejoin="round">
-<path d="M126 166C158 91 246 67 316 93c23 9 44 23 60 41"/>
-<path d="M371 137l-5 55-48-32"/>
-<path d="M389 301c-28 73-107 112-181 91-28-8-53-24-72-45"/>
-<path d="M123 350l4-55 47 33"/>
-<path d="M140 247c-2-63 40-121 99-144"/>
-<path d="M239 92l-51 21 40 38"/>
-</g>
-<circle cx="256" cy="256" r="144" fill="none" stroke="#fff" stroke-width="7"/>
-<path d="M230 318c-30-2-54 19-59 45 34 10 66-4 77-32-7-8-12-12-18-13z" fill="#8cdb44"/>
-<path d="M257 332c-5-26 8-50 33-60 8 28-4 52-33 60z" fill="#176b52"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Le Grand Partage — I Have A Dream">
+<defs><linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#e9f7e8"/><stop offset="1" stop-color="#f8efda"/></linearGradient><linearGradient id="sea" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#70d7f4"/><stop offset="1" stop-color="#1475bd"/></linearGradient><linearGradient id="wood" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#c88b4c"/><stop offset="1" stop-color="#7c4825"/></linearGradient><linearGradient id="arrow" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#8fd94a"/><stop offset="1" stop-color="#16714e"/></linearGradient></defs>
+<rect width="512" height="512" rx="72" fill="url(#sky)"/>
+<circle cx="256" cy="225" r="144" fill="url(#sea)" stroke="#fff" stroke-width="9"/>
+<path d="M165 126l40 8 15 27-18 22 13 25-27 21-39-13-18-34 12-37zM260 93l33 11 17 31-17 20 9 25-29 17-25-20-29-3-8-29 25-25zM326 182l39-8 30 24-8 36-35 10-23 34-27-12 5-39-20-20zM220 257l29-15 26 17 2 38-26 29-32-16-15-32z" fill="#90d94b" stroke="#dfffaa" stroke-width="4"/>
+<g fill="none" stroke="url(#arrow)" stroke-width="24" stroke-linecap="round" stroke-linejoin="round"><path d="M127 160C158 92 231 64 303 85c27 8 51 23 69 43"/><path d="M372 127l-6 47-43-27"/><path d="M389 287c-28 70-103 108-176 91-30-8-57-25-77-48"/><path d="M136 334l4-48 43 31"/><path d="M143 242c-2-54 30-102 76-130"/></g>
+<g fill="#16714e"><path d="M222 102l-48 18 37 34z"/><path d="M392 279l-10 54-42-30z"/></g>
+<text x="256" y="235" text-anchor="middle" font-family="Georgia,serif" font-size="25" font-weight="700" fill="#fff" stroke="#145b87" stroke-width="1.2" paint-order="stroke">I Have A Dream</text>
+<path d="M62 366l25-16h338l25 16v85l-25 16H87l-25-16z" fill="url(#wood)" stroke="#70401f" stroke-width="7"/>
+<path d="M80 379h352M80 437h352" stroke="#e2b478" stroke-width="3" opacity=".55"/>
+<circle cx="91" cy="382" r="5" fill="#60361d"/><circle cx="421" cy="382" r="5" fill="#60361d"/><circle cx="91" cy="437" r="5" fill="#60361d"/><circle cx="421" cy="437" r="5" fill="#60361d"/>
+<text x="256" y="405" text-anchor="middle" font-family="Georgia,serif" font-size="21" font-weight="700" fill="#fff4d8">Donner, Partager</text><text x="256" y="432" text-anchor="middle" font-family="Georgia,serif" font-size="21" font-weight="700" fill="#fff4d8">et Recommencer</text>
 </svg>
