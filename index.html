@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#176b52"><link rel="manifest" href="manifest.webmanifest"><link rel="icon" href="icon.svg" type="image/svg+xml"><meta name="description" content="Le Grand Partage — donnez, trouvez et partagez près de chez vous.">
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="https://unpkg.com/@supabase/supabase-js@2" onerror="this.onerror=null;this.src=\'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2\'"></script>
 <title>Le Grand Partage — Donnons une seconde vie aux objets</title>
 <style>
 :root{--green:#176b52;--deep:#104b3b;--mint:#e8f4ee;--cream:#fbfaf6;--ink:#1d2b25;--muted:#66736c;--line:#e3e9e4;--orange:#e98b4a}
@@ -32,6 +32,7 @@ dialog{border:0;border-radius:20px;padding:0;width:min(540px,calc(100% - 28px));
 <script>
 const SUPABASE_URL = "https://lioydkmparojxbsaydzo.supabase.co";
 const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_009ydpNaq-NVY0f6kaJ7jQ_83os7Il8";
+if (!window.supabase?.createClient) { document.body.insertAdjacentHTML("afterbegin", '<div role="alert" style="position:sticky;top:0;z-index:20;background:#fff1df;color:#743b08;padding:14px 18px;text-align:center;font:600 14px system-ui">Connexion technique indisponible : rechargez la page. Si le problème persiste, réessayez un peu plus tard.</div>'); throw new Error("Bibliothèque Supabase indisponible après les deux tentatives de chargement."); }
 const db = window.supabase.createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY);
 const $ = s => document.querySelector(s);
 let category = "Tous", currentUser = null, authMode = "login", rows = [];
