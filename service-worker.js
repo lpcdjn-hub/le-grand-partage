@@ -1,4 +1,4 @@
-const CACHE = "grand-partage-v10";
+const CACHE = "grand-partage-v11";
 const APP = ["/le-grand-partage/", "/le-grand-partage/index.html", "/le-grand-partage/manifest.webmanifest", "/le-grand-partage/icon.svg", "/le-grand-partage/logo.svg"];
 self.addEventListener("install", event => {
   event.waitUntil(caches.open(CACHE).then(cache => cache.addAll(APP)).then(() => self.skipWaiting()));
