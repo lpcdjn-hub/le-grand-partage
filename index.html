@@ -65,7 +65,17 @@ function render(profiles=profileNames){
   if(!a.length){$("#listings").innerHTML='<div class="empty">Aucune annonce disponible pour le moment.<br>Vous pouvez être parmi les premiers à partager un objet !</div>';return;}
   $("#listings").innerHTML=a.map(x=>'<article class="card"><div class="photo">'+(x.image_url?'<img src="'+esc(x.image_url)+'" alt="" style="width:100%;height:100%;object-fit:cover">':emoji[x.category]||"📦")+'<span class="tag">'+esc(x.category)+'</span></div><div class="cardBody"><h3>'+esc(x.title)+'</h3><p>'+esc(x.description||"Objet à partager gratuitement.")+'</p><div class="meta"><span>📍 '+esc(x.city)+'</span><span>Par '+esc(profiles[x.user_id]||"Membre")+'</span></div></div></article>').join("");
 }
-$("#authTop").onclick=()=>currentUser?openAccount():openAuth();
+$("#authTop").onclick=async()=>{
+  const button=$("#authTop");button.disabled=true;
+  try{
+    const {data,error}=await db.auth.getSession();
+    if(error)throw error;
+    currentUser=data.session?.user||null;syncAuth();
+    if(currentUser)await openAccount();
+    else{openAuth();toast("Votre session n’est pas active. Connectez-vous à nouveau.");}
+  }catch(error){console.error("Vérification de session :",error);toast("Impossible de vérifier votre connexion. Réessayez.");}
+  finally{button.disabled=false;}
+};
 $("#accountClose").onclick=()=>$("#accountModal").close();
 $("#accountAdd").onclick=()=>{$("#accountModal").close();openListing();};
 $("#signOutBtn").onclick=async()=>{const {error}=await db.auth.signOut();if(error){toast("Déconnexion impossible : "+error.message);return;}$("#accountModal").close();toast("Vous êtes déconnecté.");};
