@@ -1,12 +1,6 @@
-// Le Grand Partage: remove stale app caches and stop intercepting page requests.
-self.addEventListener("install", event => {
-  event.waitUntil(self.skipWaiting());
-});
+// Clear legacy caches and unregister previous service workers.
+self.addEventListener("install", event => event.waitUntil(self.skipWaiting()));
 self.addEventListener("activate", event => {
-  event.waitUntil(
-    caches.keys()
-      .then(keys => Promise.all(keys.map(key => caches.delete(key))))
-      .then(() => self.registration.unregister())
-      .then(() => self.clients.claim())
-  );
+ event.waitUntil(caches.keys().then(keys => Promise.all(keys.map(key => caches.delete(key))))
+ .then(() => self.registration.unregister()).then(() => self.clients.claim()));
 });
