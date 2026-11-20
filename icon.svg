@@ -1,21 +1,24 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-<defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#a8e83b"/><stop offset="1" stop-color="#08783c"/></linearGradient></defs>
-<rect width="512" height="512" rx="112" fill="#f8fff0"/>
-<circle cx="256" cy="256" r="224" fill="url(#g)"/>
-<g fill="#fff" stroke="#fff" stroke-linejoin="round" stroke-linecap="round">
-<path d="M210 86h76l-20-29 18-13 52 72-82 34-8-22 35-15h-71z" opacity=".98"/>
-<path d="M389 171l38 66-36-3 1 23 89 2-3-89-23 2 2 39-48-83z" opacity=".98"/>
-<path d="M151 330l-39-65 36 3-1-23-89-2 3 89 23-2-2-39 48 83z" opacity=".98"/>
+<defs>
+ <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#36c96b"/><stop offset="1" stop-color="#075c37"/></linearGradient>
+ <linearGradient id="sea" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#4bd2ff"/><stop offset="1" stop-color="#0875d1"/></linearGradient>
+ <linearGradient id="land" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#d6f36b"/><stop offset="1" stop-color="#4baf42"/></linearGradient>
+</defs>
+<rect width="512" height="512" rx="108" fill="#f3fff1"/>
+<circle cx="256" cy="236" r="158" fill="url(#sea)" stroke="#fff" stroke-width="8"/>
+<path d="M161 126l38 9 14 26-16 23 12 25-26 20-39-12-18-34 12-37zM252 88l33 11 18 31-18 20 9 25-30 17-24-20-29-3-8-30 25-25zM319 176l43-8 31 25-8 37-35 9-22 35-28-12 6-39-20-20zM215 253l28-14 25 16 2 39-26 29-33-16-14-32zM296 292l34-20 27 17-7 31-32 18-29-18z" fill="url(#land)" stroke="#d9ff9a" stroke-width="4" stroke-linejoin="round"/>
+<g fill="none" stroke="#138c42" stroke-width="31" stroke-linecap="round" stroke-linejoin="round">
+ <path d="M126 174c21-69 85-112 153-110 35 1 67 14 91 37"/>
+ <path d="M382 126c43 51 53 123 25 184-13 29-34 53-61 69"/>
+ <path d="M313 389c-67 27-143 8-188-44-23-27-36-61-37-96"/>
 </g>
-<g transform="translate(0 5)">
-<circle cx="256" cy="195" r="27" fill="#fff"/>
-<circle cx="190" cy="229" r="23" fill="#ffbd32"/>
-<circle cx="322" cy="229" r="23" fill="#22a7e8"/>
-<path d="M256 226c-30 0-51 19-58 47l58 49 58-49c-7-28-28-47-58-47z" fill="#fff"/>
-<path d="M190 255c-24 0-43 15-49 39l49 39 40-32-13-31c-7-9-16-15-27-15z" fill="#ffbd32"/>
-<path d="M322 255c24 0 43 15 49 39l-49 39-40-32 13-31c7-9 16-15 27-15z" fill="#22a7e8"/>
+<g fill="#138c42">
+ <path d="M345 68l57 29-54 33z"/>
+ <path d="M426 277l-8 65-48-39z"/>
+ <path d="M89 318l-20-62 62 14z"/>
 </g>
-<path d="M142 365h228" stroke="#fff" stroke-width="13" stroke-linecap="round"/>
-<text x="256" y="408" text-anchor="middle" font-family="Arial,sans-serif" font-size="37" font-weight="700" fill="#fff">Le Grand</text>
-<text x="256" y="450" text-anchor="middle" font-family="Arial,sans-serif" font-size="43" font-weight="800" fill="#fff">Partage</text>
+<circle cx="256" cy="238" r="158" fill="none" stroke="#fff" stroke-width="7"/>
+<rect x="48" y="345" width="416" height="112" rx="30" fill="#075c37" stroke="#fff" stroke-width="6"/>
+<text x="256" y="390" text-anchor="middle" font-family="Arial,sans-serif" font-size="36" font-weight="700" fill="#fff">Le Grand</text>
+<text x="256" y="435" text-anchor="middle" font-family="Arial,sans-serif" font-size="43" font-weight="800" fill="#ffd52a">Partage</text>
 </svg>
