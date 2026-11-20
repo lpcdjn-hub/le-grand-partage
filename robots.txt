@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://lpcdjn-hub.github.io/le-grand-partage/sitemap.xml
