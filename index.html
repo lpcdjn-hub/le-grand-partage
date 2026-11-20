@@ -222,10 +222,7 @@ async function refreshMessages(){if(!activeMessageListing||!currentUser)return;c
 $("#listings").onclick=e=>{const b=e.target.closest("[data-contact-listing]");if(b)openMessages(b.dataset.contactListing);};$("#messageClose").onclick=()=>$("#messageModal").close();$("#messageForm").onsubmit=async e=>{e.preventDefault();if(!activeMessageListing||!currentUser)return;const body=String(new FormData(e.target).get("body")||"").trim();if(!body)return;const {error}=await db.from("messages").insert({listing_id:activeMessageListing.id,sender_id:currentUser.id,recipient_id:activeMessageListing.user_id,body});if(error){toast("Envoi impossible : "+error.message);return;}e.target.reset();await refreshMessages();toast("Message envoyé.");};
 $("#search").oninput=()=>render();$("#sort").onchange=()=>render();
 $("#chips").onclick=e=>{const b=e.target.closest("button[data-cat]");if(!b)return;category=b.dataset.cat;document.querySelectorAll(".chip").forEach(x=>x.classList.toggle("active",x===b));render();};
-$("#howBtn").onclick=()=>alert("1. Créez un compte gratuit.
-2. Parcourez les objets proposés.
-3. Publiez gratuitement ce que vous souhaitez donner.
-4. Les annonces sont partagées avec tous les visiteurs.");
+$("#howBtn").onclick=()=>alert(`1. Créez un compte gratuit.\n2. Parcourez les objets proposés.\n3. Publiez gratuitement ce que vous souhaitez donner.\n4. Les annonces sont partagées avec tous les visiteurs.`);
 db.auth.getSession().then(async({data})=>{currentUser=data.session?.user||null;syncAuth();await checkAdmin();await loadListings();});
 db.auth.onAuthStateChange((_event,session)=>{currentUser=session?.user||null;syncAuth();checkAdmin();});
 let installPrompt=null;const installButton=$("#installApp");
