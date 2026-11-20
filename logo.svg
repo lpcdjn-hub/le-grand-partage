@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Le Grand Partage">
+<defs><linearGradient id="earth" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#58c8f5"/><stop offset="1" stop-color="#1475c4"/></linearGradient><linearGradient id="green" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#8cdb44"/><stop offset="1" stop-color="#176b52"/></linearGradient></defs>
+<circle cx="256" cy="256" r="218" fill="#f4fff2"/>
+<circle cx="256" cy="256" r="144" fill="url(#earth)" stroke="#fff" stroke-width="9"/>
+<path d="M184 135l38 9 18 28-18 21-29-7-16-28zM279 112l32 10 18 29-15 18 8 25-28 17-24-19-23-4-7-28 24-25zM324 230l37-9 27 23-5 31-34 10-24 31-26-11 4-36-20-18zM220 265l29-16 26 17 3 36-25 29-32-16-15-29z" fill="#8bd34a" stroke="#dfff9b" stroke-width="4"/>
+<g fill="none" stroke="url(#green)" stroke-width="32" stroke-linecap="round" stroke-linejoin="round">
+<path d="M126 166C158 91 246 67 316 93c23 9 44 23 60 41"/>
+<path d="M371 137l-5 55-48-32"/>
+<path d="M389 301c-28 73-107 112-181 91-28-8-53-24-72-45"/>
+<path d="M123 350l4-55 47 33"/>
+<path d="M140 247c-2-63 40-121 99-144"/>
+<path d="M239 92l-51 21 40 38"/>
+</g>
+<circle cx="256" cy="256" r="144" fill="none" stroke="#fff" stroke-width="7"/>
+<path d="M230 318c-30-2-54 19-59 45 34 10 66-4 77-32-7-8-12-12-18-13z" fill="#8cdb44"/>
+<path d="M257 332c-5-26 8-50 33-60 8 28-4 52-33 60z" fill="#176b52"/>
+</svg>
