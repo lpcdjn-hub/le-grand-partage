@@ -1,9 +1,21 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-<rect width="512" height="512" rx="112" fill="#176b52"/>
-<circle cx="256" cy="256" r="190" fill="#f7f3df"/>
-<path d="M256 376c-18-16-116-91-116-174 0-48 37-82 82-82 28 0 51 15 64 38 13-23 36-38 64-38 45 0 82 34 82 82 0 83-98 158-116 174l-30 24z" fill="#f4b83f"/>
-<path d="M128 284c34-6 65 0 91 20l35 27c10 8 24 7 32-3 8-10 6-24-4-32l-37-31c-19-16-43-24-68-23l-49 2z" fill="#fff"/>
-<path d="M384 284c-34-6-65 0-91 20l-35 27c-10 8-24 7-32-3-8-10-6-24 4-32l37-31c19-16 43-24 68-23l49 2z" fill="#fff"/>
-<path d="M157 329c27 3 50 14 70 31l29 25 29-25c20-17 43-28 70-31" fill="none" stroke="#176b52" stroke-width="16" stroke-linecap="round"/>
-<path d="M112 168c18-27 40-45 68-55M400 168c-18-27-40-45-68-55" fill="none" stroke="#65a96d" stroke-width="17" stroke-linecap="round"/>
+<defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#a8e83b"/><stop offset="1" stop-color="#08783c"/></linearGradient></defs>
+<rect width="512" height="512" rx="112" fill="#f8fff0"/>
+<circle cx="256" cy="256" r="224" fill="url(#g)"/>
+<g fill="#fff" stroke="#fff" stroke-linejoin="round" stroke-linecap="round">
+<path d="M210 86h76l-20-29 18-13 52 72-82 34-8-22 35-15h-71z" opacity=".98"/>
+<path d="M389 171l38 66-36-3 1 23 89 2-3-89-23 2 2 39-48-83z" opacity=".98"/>
+<path d="M151 330l-39-65 36 3-1-23-89-2 3 89 23-2-2-39 48 83z" opacity=".98"/>
+</g>
+<g transform="translate(0 5)">
+<circle cx="256" cy="195" r="27" fill="#fff"/>
+<circle cx="190" cy="229" r="23" fill="#ffbd32"/>
+<circle cx="322" cy="229" r="23" fill="#22a7e8"/>
+<path d="M256 226c-30 0-51 19-58 47l58 49 58-49c-7-28-28-47-58-47z" fill="#fff"/>
+<path d="M190 255c-24 0-43 15-49 39l49 39 40-32-13-31c-7-9-16-15-27-15z" fill="#ffbd32"/>
+<path d="M322 255c24 0 43 15 49 39l-49 39-40-32 13-31c7-9 16-15 27-15z" fill="#22a7e8"/>
+</g>
+<path d="M142 365h228" stroke="#fff" stroke-width="13" stroke-linecap="round"/>
+<text x="256" y="408" text-anchor="middle" font-family="Arial,sans-serif" font-size="37" font-weight="700" fill="#fff">Le Grand</text>
+<text x="256" y="450" text-anchor="middle" font-family="Arial,sans-serif" font-size="43" font-weight="800" fill="#fff">Partage</text>
 </svg>
