@@ -10,18 +10,9 @@ create table if not exists public.admin_suspensions (
   suspended_at timestamptz not null default now(),
   suspended_by uuid references auth.users(id)
 );
-create table if not exists public.admin_reports (
-  id uuid primary key default gen_random_uuid(),
-  listing_id uuid references public.listings(id) on delete set null,
-  reporter_id uuid references auth.users(id) on delete set null,
-  reason text not null,
-  details text not null default '',
-  status text not null default 'open' check (status in ('open','reviewed','closed')),
-  created_at timestamptz not null default now()
-);
-alter table public.admin_users enable row level security;
-alter table public.admin_suspensions enable row level security;
-alter table public.admin_reports enable row level security;
+-- Use the application's existing reports table for moderation.
+alter table public.reports add column if not exists status text not null default 'open';
+alter table public.reports enable row level security;
 
 create or replace function public.is_admin()
 returns boolean language sql stable security definer set search_path=public
@@ -31,8 +22,10 @@ grant execute on function public.is_admin() to authenticated;
 
 create policy "admins manage admin users" on public.admin_users for all to authenticated using (public.is_admin()) with check (public.is_admin());
 create policy "admins manage suspensions" on public.admin_suspensions for all to authenticated using (public.is_admin()) with check (public.is_admin());
-create policy "admins manage reports" on public.admin_reports for all to authenticated using (public.is_admin()) with check (public.is_admin());
-create policy "authenticated submit reports" on public.admin_reports for insert to authenticated with check (reporter_id=auth.uid());
+drop policy if exists "admins manage reports" on public.reports;
+create policy "admins manage reports" on public.reports for all to authenticated using (public.is_admin()) with check (public.is_admin());
+drop policy if exists "authenticated submit reports" on public.reports;
+create policy "authenticated submit reports" on public.reports for insert to authenticated with check (user_id=auth.uid());
 
 create or replace function public.admin_list_users()
 returns table(user_id uuid,email text,display_name text,created_at timestamptz,is_suspended boolean)
@@ -81,8 +74,8 @@ returns table(id uuid,listing_id uuid,reporter_id uuid,reason text,details text,
 language plpgsql security definer set search_path=public
 as $$ begin
  if not public.is_admin() then raise exception 'Unauthorized'; end if;
- return query select r.id,r.listing_id,r.reporter_id,r.reason,r.details,r.status,r.created_at
- from public.admin_reports r order by r.created_at desc limit 500;
+ return query select r.id,r.listing_id,r.user_id,r.reason,''::text,r.status,r.created_at
+ from public.reports r order by r.created_at desc limit 500;
 end $$;
 grant execute on function public.admin_list_reports() to authenticated;
 
@@ -91,7 +84,7 @@ returns void language plpgsql security definer set search_path=public
 as $$ begin
  if not public.is_admin() then raise exception 'Unauthorized'; end if;
  if p_status not in ('open','reviewed','closed') then raise exception 'Invalid status'; end if;
- update public.admin_reports set status=p_status where id=p_report_id;
+ update public.reports set status=p_status where id=p_report_id;
 end $$;
 grant execute on function public.admin_update_report(uuid,text) to authenticated;
 
