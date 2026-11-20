@@ -1,3 +1,12 @@
+-- Required storage for account suspensions (needed by admin RPCs)
+create table if not exists public.admin_suspensions (
+  user_id uuid primary key references auth.users(id) on delete cascade,
+  reason text not null default '',
+  suspended_at timestamptz not null default now(),
+  suspended_by uuid references auth.users(id)
+);
+alter table public.admin_suspensions enable row level security;
+
 -- Le Grand Partage — fonctions du tableau Super-Admin
 -- À exécuter dans Supabase SQL Editor APRÈS la création de public.admin_users.
 -- Les RPC vérifient le rôle dans la base avant toute donnée/action sensible.
