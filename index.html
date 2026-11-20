@@ -126,6 +126,7 @@ $("#authForm").onsubmit=async e=>{
   const result=authMode==="login"?await db.auth.signInWithPassword({email,password}):await db.auth.signUp({email,password,options:{data:{display_name:name||"Membre"}}});
   if(result.error){
    const msg=result.error.message||"";
+   if(/email rate exceeded/i.test(msg)){toast("Limite d’envoi d’e-mails atteinte temporairement. N’essayez plus pour le moment : réessayez plus tard, ou configurez un service e-mail dédié.");return;}
    if(authMode==="login"&&/invalid login credentials/i.test(msg))toast("Connexion refusée : compte non créé ou mot de passe incorrect. Essayez « Créer un compte » ou « Mot de passe oublié ? ».");
    else if(authMode==="signup"&&/already registered|already exists/i.test(msg))toast("Cette adresse semble déjà avoir un compte. Connectez-vous ou réinitialisez votre mot de passe.");
    else toast("Erreur : "+msg);
