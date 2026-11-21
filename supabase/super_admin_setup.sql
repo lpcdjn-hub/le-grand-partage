@@ -27,7 +27,7 @@ create policy "admins manage suspensions" on public.admin_suspensions for all to
 drop policy if exists "admins manage reports" on public.reports;
 create policy "admins manage reports" on public.reports for all to authenticated using (public.is_admin()) with check (public.is_admin());
 drop policy if exists "authenticated submit reports" on public.reports;
-create policy "authenticated submit reports" on public.reports for insert to authenticated with check (user_id=auth.uid());
+create policy "authenticated submit reports" on public.reports for insert to authenticated with check (reporter_id=auth.uid());
 
 create or replace function public.admin_list_users()
 returns table(user_id uuid,email text,display_name text,created_at timestamptz,is_suspended boolean)
