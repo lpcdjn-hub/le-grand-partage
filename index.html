@@ -65,11 +65,22 @@ footer{background:#123f33!important;}
  .hero p{font-size:17px;}
  .stats{gap:14px 20px;}
 }
+
+/* Accueil : affiche mise en valeur dans une zone dédiée, jamais en fond de page */
+.hero{background:linear-gradient(135deg,#e8f4ee 0%,#f7f4e9 100%)!important;padding:clamp(24px,4vw,48px) 0!important;}
+.heroGrid{grid-template-columns:minmax(0,1.15fr) minmax(260px,.85fr)!important;gap:clamp(18px,3vw,34px)!important;}
+.heroArt{filter:none!important;background:#fff;border:1px solid #dce9df;border-radius:24px;padding:10px;overflow:hidden;box-shadow:0 12px 32px #174f3e12;}
+.heroArt img{width:100%!important;max-width:440px!important;max-height:440px;object-fit:contain;border-radius:16px;}
+.hero h1{max-width:600px!important;font-size:clamp(34px,4.5vw,54px)!important;}
+.hero p{font-size:clamp(16px,1.8vw,19px)!important;}
+.hero .primary{padding:15px 22px;border-radius:14px;font-size:16px;}
+main.wrap{background:transparent!important;border-radius:0!important;padding-top:34px!important;}
+@media(max-width:760px){.heroGrid{grid-template-columns:1fr!important;}.heroArt{display:block!important;max-width:100%;margin-top:8px;padding:7px;border-radius:18px;}.heroArt img{max-height:360px!important;width:100%!important;object-fit:cover;object-position:center top;border-radius:12px;}.hero h1{font-size:clamp(34px,9vw,44px)!important;}.stats{margin-top:20px;gap:14px;}.hero{padding:22px 0!important;}}
 </style>
 </head>
 <body>
 <header><div class="wrap top"><a class="brand" href="#"><img class="logo" src="icon.svg?v=4" alt="Logo Le Grand Partage">Le Grand Partage</a><nav class="nav"><button class="btn light" id="installApp">Installer l’application</button><button class="btn plain" id="howBtn">Comment ça marche</button><button class="btn light" id="membersTop">👥 Galerie des membres</button><button class="btn light" id="authTop">Connexion</button><button class="btn light" id="adminTop" hidden>🛡️ Administration</button><button class="btn primary" id="addTop">＋ Déposer une annonce</button></nav></div></header>
-<section class="hero"><div class="wrap heroGrid"><div><div class="eyebrow">Donner • Recevoir • Réutiliser</div><h1>Ce qui ne vous sert plus peut faire le bonheur d’un autre.</h1><p>Une plateforme de partage pour donner une seconde vie aux objets, créer du lien et consommer autrement.</p><button class="btn primary" id="addHero">Je partage un objet gratuitement</button><div class="stats"><div><b>♻️ Seconde vie</b>Moins de gaspillage</div><div><b>💚 Entraide</b>Plus de solidarité</div><div><b>📍 Près de chez vous</b>Du partage local</div></div></div><div class="heroArt" aria-hidden="true"><img src="icon.svg" alt="Le Grand Partage : I Have A Dream, Donner, Partager et Recommencer"></div></div></section>
+<section class="hero"><div class="wrap heroGrid"><div><div class="eyebrow">Donner • Recevoir • Réutiliser</div><h1>Ce qui ne vous sert plus peut faire le bonheur d’un autre.</h1><p>Une plateforme de partage pour donner une seconde vie aux objets, créer du lien et consommer autrement.</p><button class="btn primary" id="addHero">Je partage un objet gratuitement</button><div class="stats"><div><b>♻️ Seconde vie</b>Moins de gaspillage</div><div><b>💚 Entraide</b>Plus de solidarité</div><div><b>📍 Près de chez vous</b>Du partage local</div></div></div><div class="heroArt" aria-hidden="true"><img src="d37fdc4e-70bc-4581-a5bb-f5ae12c0c842.png" alt="Affiche illustrée Le Grand Partage, donner et partager pour une seconde vie aux objets"></div></div></section>
 <main class="wrap"><div class="sectionHead"><div><div class="eyebrow">Les trouvailles du moment</div><h2>Les objets à partager</h2><p>Recherchez ce dont vous avez besoin ou proposez ce que vous n’utilisez plus.</p></div></div>
 <div class="filters"><input class="field" id="search" placeholder="🔎 Rechercher un objet, un mot-clé…" aria-label="Rechercher"><select class="field" id="sort"><option value="recent">Plus récents</option><option value="az">Nom A à Z</option></select></div>
 <div class="chips" id="chips"><button class="chip active" data-cat="Tous">Tout voir</button><button class="chip" data-cat="Maison">🏡 Maison</button><button class="chip" data-cat="Vêtements">👕 Vêtements</button><button class="chip" data-cat="Enfants">🧸 Enfants</button><button class="chip" data-cat="Loisirs">🎨 Loisirs</button><button class="chip" data-cat="Bricolage">🛠️ Bricolage</button><button class="chip" data-cat="Autre">📦 Autre</button></div>
