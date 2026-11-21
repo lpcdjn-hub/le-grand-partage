@@ -303,6 +303,6 @@ let installPrompt=null;const installButton=$("#installApp");
 window.addEventListener("beforeinstallprompt",event=>{event.preventDefault();installPrompt=event;installButton.hidden=false;});
 installButton.addEventListener("click",async()=>{if(!installPrompt){alert("Pour installer Le Grand Partage sur Android : ouvrez le menu ⋮ de Chrome, puis choisissez « Installer l’application » ou « Ajouter à l’écran d’accueil ».");return;}installPrompt.prompt();await installPrompt.userChoice;installPrompt=null;installButton.hidden=true;});
 window.addEventListener("appinstalled",()=>{installButton.hidden=true;});
-if("serviceWorker" in navigator&&location.protocol==="https:")window.addEventListener("load",()=>navigator.serviceWorker.register("/le-grand-partage/service-worker.js?v=logo5").catch(()=>{}));
+if("serviceWorker" in navigator&&location.protocol==="https:")window.addEventListener("load",()=>navigator.serviceWorker.register("/le-grand-partage/service-worker.js?v=logo6").catch(()=>{}));
 </script>
 </body></html>
