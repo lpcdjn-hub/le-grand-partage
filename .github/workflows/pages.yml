@@ -1,4 +1,5 @@
 name: Deploy Le Grand Partage
+# Fresh run to avoid duplicate artifacts from previous rerun
 on:
   push:
     branches: [main]
