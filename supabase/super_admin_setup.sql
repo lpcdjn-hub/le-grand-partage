@@ -20,7 +20,9 @@ as $$ select exists(select 1 from public.admin_users a where a.user_id=auth.uid(
 revoke all on function public.is_admin() from public;
 grant execute on function public.is_admin() to authenticated;
 
+drop policy if exists "admins manage admin users" on public.admin_users;
 create policy "admins manage admin users" on public.admin_users for all to authenticated using (public.is_admin()) with check (public.is_admin());
+drop policy if exists "admins manage suspensions" on public.admin_suspensions;
 create policy "admins manage suspensions" on public.admin_suspensions for all to authenticated using (public.is_admin()) with check (public.is_admin());
 drop policy if exists "admins manage reports" on public.reports;
 create policy "admins manage reports" on public.reports for all to authenticated using (public.is_admin()) with check (public.is_admin());
@@ -74,7 +76,7 @@ returns table(id uuid,listing_id uuid,reporter_id uuid,reason text,details text,
 language plpgsql security definer set search_path=public
 as $$ begin
  if not public.is_admin() then raise exception 'Unauthorized'; end if;
- return query select r.id,r.listing_id,r.user_id,r.reason,''::text,r.status,r.created_at
+ return query select r.id,r.listing_id,r.reporter_id,r.reason,coalesce(r.details,''),r.status,r.created_at
  from public.reports r order by r.created_at desc limit 500;
 end $$;
 grant execute on function public.admin_list_reports() to authenticated;
