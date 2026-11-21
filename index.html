@@ -194,17 +194,22 @@ locateCity.addEventListener("click",()=>{
 $("#listingForm").onsubmit=async e=>{
  e.preventDefault();if(!currentUser){toast("Connectez-vous d’abord.");return;}
  const f=new FormData(e.target),title=String(f.get("title")).trim(),cat=String(f.get("category")),city=String(f.get("city")).trim(),description=String(f.get("description")).trim(),file=f.get("photo");
- let image_url=null;
+ let image_url=null,uploadedPath=null;
  if(file&&file.size){
+   if(!["image/jpeg","image/png","image/webp"].includes(file.type)){toast("Format photo accepté : JPG, PNG ou WebP.");return;}
    if(file.size>5*1024*1024){toast("La photo doit faire 5 Mo maximum.");return;}
-   const ext=(file.name.split(".").pop()||"jpg").toLowerCase().replace(/[^a-z0-9]/g,"")||"jpg";
+   const ext=file.type==="image/png"?"png":file.type==="image/webp"?"webp":"jpg";
    const path=currentUser.id+"/"+crypto.randomUUID()+"."+ext;
    const up=await db.storage.from("listing-photos").upload(path,file,{contentType:file.type,upsert:false});
    if(up.error){toast("Échec de l’envoi de la photo : "+up.error.message);return;}
+   uploadedPath=path;
    image_url=db.storage.from("listing-photos").getPublicUrl(path).data.publicUrl;
  }
  const {error}=await db.from("listings").insert({user_id:currentUser.id,title,category:cat,city,description,image_url});
- if(error){toast("Publication impossible : "+error.message);return;}
+ if(error){
+   if(uploadedPath)await db.storage.from("listing-photos").remove([uploadedPath]);
+   toast("Publication impossible : "+error.message);return;
+ }
  e.target.reset();$("#modal").close();toast("Annonce publiée et partagée avec la communauté !");await loadListings();
 };
 let activeMessageListing=null;
