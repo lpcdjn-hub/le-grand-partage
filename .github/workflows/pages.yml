@@ -1,5 +1,4 @@
 name: Deploy Le Grand Partage
-# Fresh run to avoid duplicate artifacts from previous rerun
 on:
   push:
     branches: [main]
@@ -25,7 +24,10 @@ jobs:
       - name: Upload site
         uses: actions/upload-pages-artifact@v3
         with:
+          name: site-pages
           path: .
       - name: Deploy
         id: deployment
         uses: actions/deploy-pages@v4
+        with:
+          artifact_name: site-pages
