@@ -137,7 +137,10 @@ $("#authToggle").onclick=()=>{authMode=authMode==="login"?"signup":"login";updat
 $("#authReset").onclick=async()=>{const email=String($("#authForm").elements.email.value||"").trim();if(!email){toast("Entrez d’abord votre adresse e-mail.");return;}const btn=$("#authReset");btn.disabled=true;try{const {error}=await db.auth.resetPasswordForEmail(email,{redirectTo:location.href});if(error)toast("Envoi impossible : "+error.message);else toast("Si un compte existe pour cette adresse, un e-mail de réinitialisation va être envoyé. Vérifiez aussi vos spams.");}catch(err){toast("Erreur : "+(err?.message||"réessayez."));}finally{btn.disabled=false;}};
 $("#authForm").onsubmit=async e=>{
  e.preventDefault();
- const f=new FormData(e.target),email=String(f.get("email")).trim(),password=String(f.get("password")),name=String(f.get("display_name")||"").trim();
+ const f=new FormData(e.target),email=String(f.get("email")||"").trim(),password=String(f.get("password")||""),name=String(f.get("display_name")||"").trim();
+ if(!email||!/^\\S+@\\S+\\.\\S+$/.test(email)){toast("Entrez une adresse e-mail valide.");return;}
+ if(password.length<6){toast("Le mot de passe doit contenir au moins 6 caractères.");return;}
+ if(authMode==="signup"&&!name){toast("Indiquez votre nom ou pseudo.");return;}
  const btn=$("#authSubmit"); if(btn)btn.disabled=true;
  try {
   const result=authMode==="login"?await db.auth.signInWithPassword({email,password}):await db.auth.signUp({email,password,options:{data:{display_name:name||"Membre"}}});
