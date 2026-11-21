@@ -49,6 +49,22 @@ main.wrap{background:rgba(251,250,246,.88);border-radius:22px;padding-left:20px;
 .card{background:rgba(255,255,255,.94)}
 footer{background:rgba(18,63,51,.92)}
 @media(max-width:760px){main.wrap{padding-left:15px;padding-right:15px}}
+
+/* Correction mobile : suppression du fond affiche en transparence sur le contenu */
+body{background:var(--cream)!important;}
+body::before{display:none!important;content:none!important;}
+header{background:#fff!important;}
+.hero{background:linear-gradient(135deg,#e8f4ee 0%,#f7f4e9 100%)!important;}
+main.wrap{background:var(--cream)!important;border-radius:0!important;}
+.card{background:#fff!important;}
+footer{background:#123f33!important;}
+@media(max-width:760px){
+ .top{background:#fff;}
+ .hero{padding:28px 0 24px!important;}
+ .hero h1{line-height:1.08;}
+ .hero p{font-size:17px;}
+ .stats{gap:14px 20px;}
+}
 </style>
 </head>
 <body>
