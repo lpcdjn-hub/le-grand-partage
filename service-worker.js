@@ -1,4 +1,4 @@
-const CACHE_NAME = "grand-partage-shell-v9";
+const CACHE_NAME = "grand-partage-shell-v10";
 const SHELL = ["/le-grand-partage/", "/le-grand-partage/manifest.webmanifest", "/le-grand-partage/icon.svg", "/le-grand-partage/icon-192.svg", "/le-grand-partage/icon-512.svg"];
 self.addEventListener("install", event => {
   event.waitUntil(caches.open(CACHE_NAME).then(cache => cache.addAll(SHELL)).then(() => self.skipWaiting()));
