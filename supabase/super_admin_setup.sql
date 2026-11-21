@@ -76,7 +76,7 @@ returns table(id uuid,listing_id uuid,reporter_id uuid,reason text,details text,
 language plpgsql security definer set search_path=public
 as $$ begin
  if not public.is_admin() then raise exception 'Unauthorized'; end if;
- return query select r.id,r.listing_id,r.reporter_id,r.reason,coalesce(r.details,''),r.status,r.created_at
+ return query select r.id,r.listing_id,r.reporter_id,r.reason,''::text,r.status,r.created_at
  from public.reports r order by r.created_at desc limit 500;
 end $$;
 grant execute on function public.admin_list_reports() to authenticated;
