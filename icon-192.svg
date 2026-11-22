@@ -1,8 +1,11 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
 <rect width="512" height="512" rx="110" fill="#fff"/>
-<defs><marker id="arrow" markerWidth="24" markerHeight="24" refX="18" refY="12" orient="auto" markerUnits="userSpaceOnUse"><path d="M2 2L22 12L2 22Z" fill="#159447"/></marker></defs>
-<g fill="none" stroke="#159447" stroke-width="42" stroke-linecap="round" stroke-linejoin="round">
-<path d="M157 132 Q256 74 355 132" marker-end="url(#arrow)"/>
-<path d="M376 173 Q421 260 350 354" marker-end="url(#arrow)"/>
-<path d="M313 379 Q205 423 133 337" marker-end="url(#arrow)"/>
-</g></svg>
+<g fill="#159447">
+<!-- Arrow 1: upper, pointing right -->
+<path d="M112 108 H300 V68 L390 150 L300 232 V192 H112 Z"/>
+<!-- Arrow 2: lower-right, pointing down-left -->
+<path d="M360 194 L395 214 L300 345 L335 370 L220 390 L260 275 L285 305 Z"/>
+<!-- Arrow 3: lower-left, pointing up-left -->
+<path d="M188 350 L153 370 L70 235 L35 255 L80 140 L175 220 L135 205 Z"/>
+</g>
+</svg>
