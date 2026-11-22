@@ -7,12 +7,25 @@
   "start_url": "/le-grand-partage/",
   "scope": "/le-grand-partage/",
   "display": "standalone",
-  "display_override": ["standalone", "minimal-ui"],
-  "background_color": "#d8f3ff",
-  "theme_color": "#176b52",
+  "display_override": [
+    "standalone",
+    "minimal-ui"
+  ],
+  "background_color": "#e9fff1",
+  "theme_color": "#087a43",
   "orientation": "portrait",
   "icons": [
-    { "src": "icon-192.svg?v=appicon-20261122b", "sizes": "192x192", "type": "image/svg+xml", "purpose": "any" },
-    { "src": "icon-512.svg?v=appicon-20261122b", "sizes": "512x512", "type": "image/svg+xml", "purpose": "any maskable" }
+    {
+      "src": "icon-192.svg?v=logo-20261122c",
+      "sizes": "192x192",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "icon-512.svg?v=logo-20261122c",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
   ]
 }
