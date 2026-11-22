@@ -1,24 +1,8 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-<rect width="512" height="512" rx="104" fill="#fff"/>
-<defs>
- <linearGradient id="earth" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#42c9f5"/><stop offset="1" stop-color="#0752a7"/></linearGradient>
- <linearGradient id="arrowGreen" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#69d83c"/><stop offset="1" stop-color="#159447"/></linearGradient>
- <clipPath id="planet"><circle cx="256" cy="256" r="124"/></clipPath>
- <marker id="head" markerWidth="6" markerHeight="6" refX="5.2" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0 0L6 3L0 6Z" fill="#159447"/></marker>
-</defs>
-<g fill="none" stroke="url(#arrowGreen)" stroke-width="23" stroke-linecap="round" stroke-linejoin="round">
- <path d="M142 119 C181 73 323 73 370 119" marker-end="url(#head)"/>
- <path d="M389 165 C430 222 425 315 365 371" marker-end="url(#head)"/>
- <path d="M335 394 C270 438 170 421 119 361" marker-end="url(#head)"/>
- <path d="M102 330 C76 260 90 190 131 145" marker-end="url(#head)"/>
-</g>
-<circle cx="256" cy="256" r="124" fill="url(#earth)" stroke="#d5f4ff" stroke-width="5"/>
-<g clip-path="url(#planet)" fill="#70d34d" stroke="#baf58e" stroke-width="3">
- <path d="M110 170l34-28 42 4 24 29-10 28-35 11-16 31-39-14-20-35z"/>
- <path d="M231 118l37-10 32 18 5 30-30 19-27-12-22-20z"/>
- <path d="M293 197l49-19 37 20 18 36-28 26-24 39-33-14-9-41-25-18z"/>
- <path d="M215 278l35-19 32 17 15 38-27 40-42-17-25-32z"/>
- <path d="M377 116l35 8 22 30-20 22-33-9-19-25z"/>
-</g>
-<circle cx="256" cy="256" r="124" fill="none" stroke="#fff" stroke-opacity=".35" stroke-width="3"/>
-</svg>
+<rect width="512" height="512" rx="110" fill="#fff"/>
+<defs><marker id="arrow" markerWidth="24" markerHeight="24" refX="18" refY="12" orient="auto" markerUnits="userSpaceOnUse"><path d="M2 2L22 12L2 22Z" fill="#159447"/></marker></defs>
+<g fill="none" stroke="#159447" stroke-width="42" stroke-linecap="round" stroke-linejoin="round">
+<path d="M157 132 Q256 74 355 132" marker-end="url(#arrow)"/>
+<path d="M376 173 Q421 260 350 354" marker-end="url(#arrow)"/>
+<path d="M313 379 Q205 423 133 337" marker-end="url(#arrow)"/>
+</g></svg>
