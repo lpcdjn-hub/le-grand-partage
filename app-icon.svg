@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+<rect width="512" height="512" rx="86" fill="#fff"/>
+<defs>
+ <radialGradient id="earth" cx="32%" cy="28%" r="75%"><stop offset="0" stop-color="#70d8ff"/><stop offset=".55" stop-color="#1686df"/><stop offset="1" stop-color="#063a86"/></radialGradient>
+ <linearGradient id="green" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#b8ff00"/><stop offset=".55" stop-color="#42df00"/><stop offset="1" stop-color="#008b16"/></linearGradient>
+</defs>
+<circle cx="256" cy="225" r="151" fill="url(#earth)" stroke="#1764ad" stroke-width="5"/>
+<path d="M171 115l-36 29 25 31 45-9 17 31-24 26-49-7-23 35 30 39 56-12 21 34 38-10 31-49-12-29-44-4-18-32 29-30 42 8 29-26-13-43-44-22-48 4-35 32-37-5z" fill="#58bb38" stroke="#9cdb64" stroke-width="5"/>
+<path d="M83 190 Q45 112 135 62 Q238 20 346 74 L311 109 Q235 62 157 95 Q93 124 118 170Z" fill="url(#green)" stroke="#278d00" stroke-width="7"/>
+<path d="M314 65l109 37-83 72-26-59z" fill="#4fda00" stroke="#238d00" stroke-width="7" stroke-linejoin="round"/>
+<path d="M423 310 Q468 391 368 448 Q254 505 144 439 L176 399 Q254 444 342 402 Q412 365 384 325Z" fill="url(#green)" stroke="#278d00" stroke-width="7"/>
+<path d="M147 433l-107-37 84-72 28 60z" fill="#4fda00" stroke="#238d00" stroke-width="7" stroke-linejoin="round"/>
+<path d="M81 295 Q21 230 91 163 Q123 132 165 132 L148 173 Q105 180 99 221 Q94 255 125 279Z" fill="url(#green)" stroke="#278d00" stroke-width="7"/>
+<path d="M78 160l-70 63 100 27-14-53z" fill="#4fda00" stroke="#238d00" stroke-width="7" stroke-linejoin="round"/>
+<text x="256" y="223" text-anchor="middle" font-family="Georgia,serif" font-style="italic" font-size="54" font-weight="bold" fill="white" stroke="#063e8a" stroke-width="2" paint-order="stroke">I have</text>
+<text x="256" y="274" text-anchor="middle" font-family="Georgia,serif" font-style="italic" font-size="55" font-weight="bold" fill="white" stroke="#063e8a" stroke-width="2" paint-order="stroke">a dream</text>
+<g fill="#111" stroke="#111" stroke-width="9" stroke-linecap="round">
+ <circle cx="135" cy="343" r="17"/><path d="M135 364v60m-24-38h48m-24 38-19 35m19-35 19 35" fill="none"/>
+ <circle cx="194" cy="332" r="18"/><path d="M194 353v70m-27-38h54m-27 38-18 34m18-34 18 34" fill="none"/>
+ <circle cx="256" cy="325" r="20"/><path d="M256 349v76m-29-42h58m-29 42-19 36m19-36 19 36" fill="none"/>
+ <circle cx="318" cy="332" r="18"/><path d="M318 353v70m-27-38h54m-27 38-18 34m18-34 18 34" fill="none"/>
+ <circle cx="377" cy="343" r="17"/><path d="M377 364v60m-24-38h48m-24 38-18 35m18-35 18 35" fill="none"/>
+</g>
+<path d="M95 464 Q256 488 417 464" fill="none" stroke="#087d20" stroke-width="11" stroke-linecap="round"/>
+</svg>
