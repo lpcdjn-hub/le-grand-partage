@@ -1,9 +1,8 @@
-const CACHE_NAME = "grand-partage-shell-v33-pwa-install-fix-20261122";
+const CACHE_NAME = "grand-partage-shell-v34-svg-icon-20261122";
 const SHELL = [
   "/le-grand-partage/",
-  "/le-grand-partage/manifest.webmanifest?v=pwa-install-fix-20261122",
-  "/le-grand-partage/icon-192.png?v=pwa-install-fix-20261122",
-  "/le-grand-partage/icon-512.png?v=pwa-install-fix-20261122"
+  "/le-grand-partage/manifest.webmanifest?v=svg-icon-20261122",
+  "/le-grand-partage/app-icon.svg?v=svg-icon-20261122"
 ];
 self.addEventListener("install", event => {
   event.waitUntil(caches.open(CACHE_NAME).then(cache => cache.addAll(SHELL)).then(() => self.skipWaiting()));
