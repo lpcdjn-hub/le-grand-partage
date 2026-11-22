@@ -105,6 +105,12 @@ footer{background:#123f33!important;}
  .nav #addTop{grid-column:1/-1!important;}
 }
 @media(max-width:380px){.nav{grid-template-columns:1fr 1fr!important;}.nav .btn{font-size:11px!important;padding:6px!important;}}
+
+/* Affiche d'accueil plus grande sur mobile : utilise la largeur disponible */
+@media(max-width:760px){
+ .heroArt{width:100%!important;max-width:none!important;margin:14px 0 0!important;padding:5px!important;}
+ .heroArt img{width:100%!important;max-width:none!important;height:auto!important;max-height:none!important;object-fit:contain!important;object-position:center!important;}
+}
 </style>
 </head>
 <body>
