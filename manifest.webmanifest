@@ -16,7 +16,7 @@
   "orientation": "portrait",
   "icons": [
     {
-      "src": "/le-grand-partage/pwa-icon.svg?v=20261123-1",
+      "src": "/le-grand-partage/app-icon.svg?v=vector-icon-20261123-2",
       "sizes": "any",
       "type": "image/svg+xml",
       "purpose": "any"
