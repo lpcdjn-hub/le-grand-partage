@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#176b52">
+<meta name="description" content="Installez Le Grand Partage sur votre téléphone pour donner, trouver et partager gratuitement des objets.">
+<title>Installer Le Grand Partage</title>
+<style>
+:root{font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;color:#153b32;background:#effaf5}
+*{box-sizing:border-box}body{margin:0;padding:24px;min-height:100vh;display:grid;place-items:center}
+main{max-width:720px;width:100%;background:#fff;border-radius:24px;padding:clamp(24px,5vw,48px);box-shadow:0 12px 40px #164d3c18}
+.logo{width:96px;height:96px;object-fit:contain;display:block;margin:0 auto 16px}
+h1{text-align:center;font-size:clamp(28px,6vw,42px);margin:0 0 8px;color:#176b52}
+.lead{text-align:center;color:#4b665e;font-size:18px;margin:0 0 28px}
+section{padding:20px 0;border-top:1px solid #e5eee9}h2{font-size:21px;margin:0 0 12px}
+.steps{padding-left:24px;margin:0;color:#334f46}.steps li{margin:8px 0;line-height:1.55}
+button,.cta{display:block;width:100%;border:0;border-radius:14px;padding:16px;text-align:center;background:#176b52;color:white;font-weight:700;font-size:17px;text-decoration:none;margin:12px 0;cursor:pointer}
+.secondary{background:#e5f4ed;color:#176b52}
+.note{background:#f3f8f5;padding:14px;border-radius:12px;color:#4b665e;line-height:1.5}
+footer{text-align:center;color:#658078;font-size:14px;margin-top:22px}
+</style>
+</head>
+<body>
+<main>
+<img class="logo" src="./icon-192.svg" alt="Logo Le Grand Partage">
+<h1>Le Grand Partage</h1>
+<p class="lead">Donner · Partager · Recommencer</p>
+<p style="text-align:center">L'application gratuite pour donner une seconde vie aux objets et partager près de chez soi.</p>
+<button id="install" hidden>📲 Installer l'application</button>
+<section>
+<h2>📱 Android</h2>
+<ol class="steps">
+<li>Ouvrez cette page dans <strong>Chrome</strong>.</li>
+<li>Appuyez sur le bouton « Installer l'application » s'il apparaît.</li>
+<li>Sinon, ouvrez le menu ⋮ de Chrome puis choisissez <strong>« Installer l'application »</strong> ou <strong>« Ajouter à l'écran d'accueil »</strong>.</li>
+<li>Confirmez : l'icône apparaîtra sur votre téléphone.</li>
+</ol>
+</section>
+<section>
+<h2>🍎 iPhone / iPad</h2>
+<ol class="steps">
+<li>Ouvrez le site dans <strong>Safari</strong>.</li>
+<li>Appuyez sur le bouton Partager.</li>
+<li>Choisissez <strong>« Sur l'écran d'accueil »</strong>, puis Ajouter.</li>
+</ol>
+</section>
+<section>
+<h2>🌍 Accéder au site</h2>
+<a class="cta" href="./">Ouvrir Le Grand Partage</a>
+<p class="note">L'installation est gratuite. Aucun paiement n'est demandé pour donner ou récupérer des objets.</p>
+</section>
+<footer>Le Grand Partage · Donner, partager, recommencer</footer>
+</main>
+<script>
+let deferredPrompt;
+const installButton=document.getElementById('install');
+window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredPrompt=e;installButton.hidden=false});
+installButton.addEventListener('click',async()=>{if(!deferredPrompt)return;deferredPrompt.prompt();await deferredPrompt.userChoice;deferredPrompt=null;installButton.hidden=true});
+</script>
+</body>
+</html>
