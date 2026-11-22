@@ -1,25 +1,42 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-<rect width="512" height="512" rx="86" fill="#fff"/>
+<rect width="512" height="512" rx="92" fill="#fff"/>
 <defs>
- <radialGradient id="earth" cx="32%" cy="28%" r="75%"><stop offset="0" stop-color="#70d8ff"/><stop offset=".55" stop-color="#1686df"/><stop offset="1" stop-color="#063a86"/></radialGradient>
- <linearGradient id="green" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#b8ff00"/><stop offset=".55" stop-color="#42df00"/><stop offset="1" stop-color="#008b16"/></linearGradient>
+ <radialGradient id="ocean" cx="31%" cy="25%" r="80%"><stop stop-color="#73d9ff"/><stop offset=".5" stop-color="#087edb"/><stop offset="1" stop-color="#063d8b"/></radialGradient>
+ <linearGradient id="green" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#baff00"/><stop offset=".5" stop-color="#42df00"/><stop offset="1" stop-color="#078b24"/></linearGradient>
+ <clipPath id="earth"><circle cx="256" cy="237" r="174"/></clipPath>
 </defs>
-<circle cx="256" cy="225" r="151" fill="url(#earth)" stroke="#1764ad" stroke-width="5"/>
-<path d="M171 115l-36 29 25 31 45-9 17 31-24 26-49-7-23 35 30 39 56-12 21 34 38-10 31-49-12-29-44-4-18-32 29-30 42 8 29-26-13-43-44-22-48 4-35 32-37-5z" fill="#58bb38" stroke="#9cdb64" stroke-width="5"/>
-<path d="M83 190 Q45 112 135 62 Q238 20 346 74 L311 109 Q235 62 157 95 Q93 124 118 170Z" fill="url(#green)" stroke="#278d00" stroke-width="7"/>
-<path d="M314 65l109 37-83 72-26-59z" fill="#4fda00" stroke="#238d00" stroke-width="7" stroke-linejoin="round"/>
-<path d="M423 310 Q468 391 368 448 Q254 505 144 439 L176 399 Q254 444 342 402 Q412 365 384 325Z" fill="url(#green)" stroke="#278d00" stroke-width="7"/>
-<path d="M147 433l-107-37 84-72 28 60z" fill="#4fda00" stroke="#238d00" stroke-width="7" stroke-linejoin="round"/>
-<path d="M81 295 Q21 230 91 163 Q123 132 165 132 L148 173 Q105 180 99 221 Q94 255 125 279Z" fill="url(#green)" stroke="#278d00" stroke-width="7"/>
-<path d="M78 160l-70 63 100 27-14-53z" fill="#4fda00" stroke="#238d00" stroke-width="7" stroke-linejoin="round"/>
-<text x="256" y="223" text-anchor="middle" font-family="Georgia,serif" font-style="italic" font-size="54" font-weight="bold" fill="white" stroke="#063e8a" stroke-width="2" paint-order="stroke">I have</text>
-<text x="256" y="274" text-anchor="middle" font-family="Georgia,serif" font-style="italic" font-size="55" font-weight="bold" fill="white" stroke="#063e8a" stroke-width="2" paint-order="stroke">a dream</text>
-<g fill="#111" stroke="#111" stroke-width="9" stroke-linecap="round">
- <circle cx="135" cy="343" r="17"/><path d="M135 364v60m-24-38h48m-24 38-19 35m19-35 19 35" fill="none"/>
- <circle cx="194" cy="332" r="18"/><path d="M194 353v70m-27-38h54m-27 38-18 34m18-34 18 34" fill="none"/>
- <circle cx="256" cy="325" r="20"/><path d="M256 349v76m-29-42h58m-29 42-19 36m19-36 19 36" fill="none"/>
- <circle cx="318" cy="332" r="18"/><path d="M318 353v70m-27-38h54m-27 38-18 34m18-34 18 34" fill="none"/>
- <circle cx="377" cy="343" r="17"/><path d="M377 364v60m-24-38h48m-24 38-18 35m18-35 18 35" fill="none"/>
+<circle cx="256" cy="237" r="174" fill="url(#ocean)" stroke="#0d66b5" stroke-width="6"/>
+<g clip-path="url(#earth)" fill="#76c83d" stroke="#b8e878" stroke-width="5" stroke-linejoin="round">
+ <path d="M91 142l58-38 50 10 36 39-24 35-48 9-32 45-45-24-19-45z"/>
+ <path d="M219 93l43-25 42 16 31 40-23 34-42-10-32-32z"/>
+ <path d="M289 205l47-22 48 23 42 38-29 38-42 19-9 50-43 24-39-38-20-49-31-32z"/>
+ <path d="M185 306l45-32 41 24 35 48-37 44-47-17-35-35z"/>
+ <path d="M380 126l41 18 21 41-34 25-42-26z"/>
 </g>
-<path d="M95 464 Q256 488 417 464" fill="none" stroke="#087d20" stroke-width="11" stroke-linecap="round"/>
+<!-- Three bold recycling arrows surrounding the planet -->
+<g fill="url(#green)" stroke="#16852b" stroke-width="8" stroke-linejoin="round">
+ <path d="M95 121C145 40 248 8 346 54l-18 37 94-4-33-88-17 42C244-12 134 24 72 112z"/>
+ <path d="M401 145c65 82 76 188 22 269l-39-22 5 84 81-26-39-17c64-103 48-219-17-288z"/>
+ <path d="M108 373C49 285 58 183 119 109l34 25-4-82-79 25 39 18C39 201 52 315 112 399z"/>
+</g>
+<g fill="#45d500" stroke="#178b24" stroke-width="7" stroke-linejoin="round">
+ <path d="M343 54l99 44-85 75-29-58z"/>
+ <path d="M429 414l-104 43 82-100z"/>
+ <path d="M76 108l-80 67 108 27-15-55z"/>
+</g>
+<text x="256" y="229" text-anchor="middle" font-family="Georgia,serif" font-style="italic" font-size="58" fill="#fff" stroke="#063b86" stroke-width="3" paint-order="stroke" font-weight="bold">I have</text>
+<text x="256" y="286" text-anchor="middle" font-family="Georgia,serif" font-style="italic" font-size="58" fill="#fff" stroke="#063b86" stroke-width="3" paint-order="stroke" font-weight="bold">a dream</text>
+<!-- Seven people holding hands -->
+<g fill="#050505" stroke="#050505" stroke-linecap="round" stroke-linejoin="round">
+ <g><circle cx="91" cy="363" r="15"/><path d="M79 381l-13 35 15 8-9 34h18l7-34 8-34z"/><path d="M76 388l-17 19 15 13M103 388l18 19-14 13" fill="none" stroke-width="12"/><path d="M81 454l-5 22M96 454l5 22" stroke-width="12"/></g>
+ <g><circle cx="145" cy="354" r="16"/><path d="M132 373l-11 43 24 17 24-17-11-43z"/><path d="M132 382l-18 23 20 14M158 382l18 23-20 14" fill="none" stroke-width="12"/><path d="M136 431l-6 45M153 431l7 45" stroke-width="12"/></g>
+ <g><circle cx="199" cy="348" r="17"/><path d="M185 368l-12 57 26 15 26-15-12-57z"/><path d="M185 380l-20 24 20 15M213 380l20 24-20 15" fill="none" stroke-width="13"/><path d="M190 437l-7 39M208 437l7 39" stroke-width="13"/></g>
+ <g><circle cx="256" cy="343" r="18"/><path d="M242 365l-14 65 28 17 28-17-14-65z"/><path d="M242 379l-22 24 22 16M270 379l22 24-22 16" fill="none" stroke-width="13"/><path d="M249 444l-7 32M263 444l7 32" stroke-width="13"/></g>
+ <g><circle cx="313" cy="348" r="17"/><path d="M299 368l-12 57 26 15 26-15-12-57z"/><path d="M299 380l-20 24 20 15M327 380l20 24-20 15" fill="none" stroke-width="13"/><path d="M304 437l-7 39M322 437l7 39" stroke-width="13"/></g>
+ <g><circle cx="367" cy="354" r="16"/><path d="M354 373l-11 43 24 17 24-17-11-43z"/><path d="M354 382l-18 23 20 14M380 382l18 23-20 14" fill="none" stroke-width="12"/><path d="M358 431l-6 45M375 431l7 45" stroke-width="12"/></g>
+ <g><circle cx="421" cy="363" r="15"/><path d="M409 381l-13 35 15 8-9 34h18l7-34 8-34z"/><path d="M406 388l-17 19 15 13M433 388l18 19-14 13" fill="none" stroke-width="12"/><path d="M411 454l-5 22M426 454l5 22" stroke-width="12"/></g>
+</g>
+<!-- Joined hands, drawn as continuous links -->
+<path d="M111 405Q130 424 145 405Q164 426 199 405Q225 426 256 405Q285 426 313 405Q341 426 367 405Q394 426 421 405" fill="none" stroke="#050505" stroke-width="12" stroke-linecap="round"/>
+<path d="M56 485Q256 502 456 485" fill="none" stroke="#078b24" stroke-width="12" stroke-linecap="round"/>
 </svg>
