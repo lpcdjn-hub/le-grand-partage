@@ -16,13 +16,13 @@
   "orientation": "portrait",
   "icons": [
     {
-      "src": "icon-192.svg?v=three-solid-arrow-shapes",
+      "src": "icon-192.svg?v=earth-three-recycle-arrows",
       "sizes": "192x192",
       "type": "image/svg+xml",
       "purpose": "any"
     },
     {
-      "src": "icon-512.svg?v=three-solid-arrow-shapes",
+      "src": "icon-512.svg?v=earth-three-recycle-arrows",
       "sizes": "512x512",
       "type": "image/svg+xml",
       "purpose": "any"
