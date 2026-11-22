@@ -1,36 +1,32 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
 <defs>
- <linearGradient id="sky" x2="0" y2="1"><stop stop-color="#1597ff"/><stop offset="1" stop-color="#b6e8ff"/></linearGradient>
- <linearGradient id="green" x2="0" y2="1"><stop stop-color="#c9ff39"/><stop offset=".45" stop-color="#4fd313"/><stop offset="1" stop-color="#08752b"/></linearGradient>
- <radialGradient id="ocean" cx=".28" cy=".2" r=".85"><stop stop-color="#2ed9ff"/><stop offset=".5" stop-color="#0875ce"/><stop offset="1" stop-color="#073d7b"/></radialGradient>
- <clipPath id="earth"><circle cx="256" cy="275" r="142"/></clipPath>
- <filter id="shadow"><feDropShadow dx="0" dy="5" stdDeviation="5" flood-color="#073c20" flood-opacity=".5"/></filter>
+ <linearGradient id="bg" x2="0" y2="1"><stop stop-color="#d8f3ff"/><stop offset="1" stop-color="#b8e5c9"/></linearGradient>
+ <radialGradient id="sea" cx="30%" cy="25%" r="80%"><stop stop-color="#45d8ff"/><stop offset=".55" stop-color="#1186d7"/><stop offset="1" stop-color="#06417f"/></radialGradient>
+ <linearGradient id="green" x2="0" y2="1"><stop stop-color="#9eff32"/><stop offset=".55" stop-color="#27bd39"/><stop offset="1" stop-color="#08783a"/></linearGradient>
+ <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="8" stdDeviation="8" flood-color="#073c20" flood-opacity=".24"/></filter>
+ <clipPath id="globe"><circle cx="256" cy="256" r="146"/></clipPath>
 </defs>
-<rect width="512" height="512" rx="92" fill="url(#sky)"/>
-<path d="M0 128Q80 100 144 133T270 124T512 125V0H0Z" fill="#fff" opacity=".2"/>
-<text x="256" y="77" text-anchor="middle" font-family="Georgia,serif" font-style="italic" font-weight="bold" font-size="48" fill="#064b21" stroke="#fff" stroke-width="7" paint-order="stroke">Le Grand Partage</text>
+<rect width="512" height="512" rx="112" fill="url(#bg)"/>
+<circle cx="256" cy="256" r="161" fill="#fff" opacity=".65"/>
 <g filter="url(#shadow)">
- <circle cx="256" cy="275" r="147" fill="#efffbc"/>
- <circle cx="256" cy="275" r="142" fill="url(#ocean)" stroke="#b9f8ff" stroke-width="5"/>
- <g clip-path="url(#earth)" fill="#55db38" stroke="#c3ff8a" stroke-width="3">
-  <path d="M120 194l40-37 45 9 21 28-28 23-11 39-37-6-29-36z"/>
-  <path d="M228 148l42-17 38 25 28 36-32 25-37-12-25-29z"/>
-  <path d="M300 255l53-25 48 26 22 42-32 35-34 47-41-15-17-49-27-25z"/>
-  <path d="M210 306l37-18 39 27 16 45-35 42-43-23-25-40z"/>
- </g>
- <g fill="none" stroke="url(#green)" stroke-width="27" stroke-linecap="round" stroke-linejoin="round">
-  <path d="M149 139Q258 75 350 143"/>
-  <path d="M371 182Q429 277 359 365"/>
-  <path d="M320 393Q204 438 129 349"/>
- </g>
- <g fill="#aaff2e" stroke="#fff" stroke-width="4">
-  <path d="M332 103l69 45-70 22 14-38z"/>
-  <path d="M393 336l-33 79-44-60 40 14z"/>
-  <path d="M140 384l-70-50 69-24-14 38z"/>
+ <circle cx="256" cy="256" r="146" fill="url(#sea)" stroke="#e9ffff" stroke-width="8"/>
+ <g clip-path="url(#globe)" fill="#64df47" stroke="#baff8b" stroke-width="5" stroke-linejoin="round">
+  <path d="M113 168l46-40 50 12 28 33-17 39-42 19-18 39-46-15-33-42z"/>
+  <path d="M232 113l48-14 37 25 23 42-29 24-39-13-26-29z"/>
+  <path d="M297 221l47-25 44 23 35 38-35 37-29 44-43-14-17-47-32-25z"/>
+  <path d="M209 298l38-26 37 22 20 47-35 47-45-20-31-36z"/>
  </g>
 </g>
-<text x="256" y="283" text-anchor="middle" font-family="Georgia,serif" font-style="italic" font-weight="bold" font-size="38" fill="#fff" stroke="#101d26" stroke-width="8" paint-order="stroke" filter="url(#shadow)">I have a Dream</text>
-<rect x="48" y="425" width="416" height="62" rx="16" fill="#e7b76a" stroke="#7c451d" stroke-width="5"/>
-<text x="256" y="463" text-anchor="middle" font-family="Georgia,serif" font-style="italic" font-weight="bold" font-size="25" fill="#173d20">Donner · Partager · Recommencer</text>
-<rect x="9" y="9" width="494" height="494" rx="86" fill="none" stroke="#72ff19" stroke-width="8"/>
+<g fill="none" stroke="url(#green)" stroke-width="29" stroke-linecap="round" stroke-linejoin="round" filter="url(#shadow)">
+ <path d="M147 126Q254 68 350 126"/>
+ <path d="M376 172Q426 265 355 359"/>
+ <path d="M320 390Q205 437 126 350"/>
+</g>
+<g fill="#20b83c" stroke="#f7fff3" stroke-width="5" stroke-linejoin="round">
+ <path d="M329 92l80 41-76 27 13-42z"/>
+ <path d="M397 330l-37 85-47-64 43 17z"/>
+ <path d="M143 387l-78-52 76-25-16 41z"/>
+</g>
+<rect x="76" y="228" width="360" height="62" rx="24" fill="#062f60" stroke="#fff" stroke-width="5" filter="url(#shadow)"/>
+<text x="256" y="269" text-anchor="middle" font-family="Georgia,serif" font-size="39" font-style="italic" font-weight="bold" fill="#fff">I have a Dream</text>
 </svg>
