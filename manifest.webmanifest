@@ -7,16 +7,19 @@
   "start_url": "/le-grand-partage/",
   "scope": "/le-grand-partage/",
   "display": "standalone",
-  "display_override": ["standalone", "minimal-ui"],
+  "display_override": [
+    "standalone",
+    "minimal-ui"
+  ],
   "background_color": "#ffffff",
   "theme_color": "#176b52",
   "orientation": "portrait",
   "icons": [
     {
-      "src": "/le-grand-partage/app-logo.jpg?v=install-logo-fix-2-20261123",
-      "sizes": "512x512",
-      "type": "image/jpeg",
-      "purpose": "any maskable"
+      "src": "/le-grand-partage/pwa-icon.svg?v=20261123-1",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
     }
   ]
 }
