@@ -13,10 +13,10 @@
   "orientation": "portrait",
   "icons": [
     {
-      "src": "/le-grand-partage/icon-512.svg?v=logo-install-fix-20261123",
-      "sizes": "any",
-      "type": "image/svg+xml",
-      "purpose": "any"
+      "src": "/le-grand-partage/app-logo.jpg?v=install-logo-fix-2-20261123",
+      "sizes": "512x512",
+      "type": "image/jpeg",
+      "purpose": "any maskable"
     }
   ]
 }
