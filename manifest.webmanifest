@@ -16,13 +16,13 @@
   "orientation": "portrait",
   "icons": [
     {
-      "src": "icon-192.svg?v=logo-20261122d",
+      "src": "icon-192.svg?v=logo-20261122e",
       "sizes": "192x192",
       "type": "image/svg+xml",
       "purpose": "any"
     },
     {
-      "src": "icon-512.svg?v=logo-20261122d",
+      "src": "icon-512.svg?v=logo-20261122e",
       "sizes": "512x512",
       "type": "image/svg+xml",
       "purpose": "any maskable"
