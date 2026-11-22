@@ -89,6 +89,11 @@ main.wrap{background:#fbfaf6!important;}
 .card{background:#fff!important;}
 footer{background:#123f33!important;}
 @media(max-width:760px){header{position:relative!important;} .top{background:#fff!important;} .nav{background:#fff!important;} .hero{padding:26px 0!important;}}
+
+/* Ajustement mobile : affiche compacte, proportions conservées, sans recadrage */
+.heroArt{width:min(100%,360px)!important;margin:16px auto 0!important;padding:8px!important;}
+.heroArt img{display:block!important;width:100%!important;max-width:100%!important;height:auto!important;max-height:none!important;object-fit:contain!important;object-position:center!important;border-radius:12px!important;}
+@media(max-width:760px){.heroArt{width:min(100%,300px)!important;margin:14px auto 0!important;padding:6px!important;border-radius:16px!important;}.heroArt img{width:100%!important;height:auto!important;max-height:none!important;object-fit:contain!important;}.hero{padding:22px 0 20px!important;}.stats{margin-top:18px!important;}}
 </style>
 </head>
 <body>
