@@ -1,26 +1,32 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-<rect width="512" height="512" rx="100" fill="#fff"/>
 <defs>
- <radialGradient id="sea" cx="32%" cy="28%" r="78%"><stop stop-color="#49d4ff"/><stop offset="1" stop-color="#0752a8"/></radialGradient>
- <clipPath id="globe"><circle cx="256" cy="256" r="137"/></clipPath>
+ <linearGradient id="bg" x2="0" y2="1"><stop stop-color="#d8f3ff"/><stop offset="1" stop-color="#b8e5c9"/></linearGradient>
+ <radialGradient id="sea" cx="30%" cy="25%" r="80%"><stop stop-color="#45d8ff"/><stop offset=".55" stop-color="#1186d7"/><stop offset="1" stop-color="#06417f"/></radialGradient>
+ <linearGradient id="green" x2="0" y2="1"><stop stop-color="#9eff32"/><stop offset=".55" stop-color="#27bd39"/><stop offset="1" stop-color="#08783a"/></linearGradient>
+ <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="8" stdDeviation="8" flood-color="#073c20" flood-opacity=".24"/></filter>
+ <clipPath id="globe"><circle cx="256" cy="256" r="146"/></clipPath>
 </defs>
-<!-- Earth -->
-<circle cx="256" cy="256" r="137" fill="url(#sea)" stroke="#d7f4ff" stroke-width="6"/>
-<g clip-path="url(#globe)" fill="#65d348" stroke="#b9f38e" stroke-width="4" stroke-linejoin="round">
- <path d="M126 165l37-31 49 7 28 30-12 36-38 15-14 37-44-12-26-38z"/>
- <path d="M224 111l42-11 35 21 10 35-29 21-34-15-23-22z"/>
- <path d="M296 191l48-21 40 21 28 39-31 30-27 41-39-13-13-43-25-18z"/>
- <path d="M211 283l37-22 35 19 17 42-31 44-43-18-29-34z"/>
+<rect width="512" height="512" rx="112" fill="url(#bg)"/>
+<circle cx="256" cy="256" r="161" fill="#fff" opacity=".65"/>
+<g filter="url(#shadow)">
+ <circle cx="256" cy="256" r="146" fill="url(#sea)" stroke="#e9ffff" stroke-width="8"/>
+ <g clip-path="url(#globe)" fill="#64df47" stroke="#baff8b" stroke-width="5" stroke-linejoin="round">
+  <path d="M113 168l46-40 50 12 28 33-17 39-42 19-18 39-46-15-33-42z"/>
+  <path d="M232 113l48-14 37 25 23 42-29 24-39-13-26-29z"/>
+  <path d="M297 221l47-25 44 23 35 38-35 37-29 44-43-14-17-47-32-25z"/>
+  <path d="M209 298l38-26 37 22 20 47-35 47-45-20-31-36z"/>
+ </g>
 </g>
-<!-- Three distinct recycling arrows, with solid arrowheads -->
-<g fill="none" stroke="#159447" stroke-width="24" stroke-linecap="round">
- <path d="M153 111 Q256 61 352 115"/>
- <path d="M374 172 Q424 265 355 355"/>
- <path d="M323 390 Q207 435 125 350"/>
+<g fill="none" stroke="url(#green)" stroke-width="29" stroke-linecap="round" stroke-linejoin="round" filter="url(#shadow)">
+ <path d="M147 126Q254 68 350 126"/>
+ <path d="M376 172Q426 265 355 359"/>
+ <path d="M320 390Q205 437 126 350"/>
 </g>
-<g fill="#159447">
- <path d="M337 83 L399 128 L337 153 L347 119 Z"/>
- <path d="M395 330 L363 405 L325 348 L363 361 Z"/>
- <path d="M144 386 L79 335 L143 313 L127 349 Z"/>
+<g fill="#20b83c" stroke="#f7fff3" stroke-width="5" stroke-linejoin="round">
+ <path d="M329 92l80 41-76 27 13-42z"/>
+ <path d="M397 330l-37 85-47-64 43 17z"/>
+ <path d="M143 387l-78-52 76-25-16 41z"/>
 </g>
+<rect x="76" y="228" width="360" height="62" rx="24" fill="#062f60" stroke="#fff" stroke-width="5" filter="url(#shadow)"/>
+<text x="256" y="269" text-anchor="middle" font-family="Georgia,serif" font-size="39" font-style="italic" font-weight="bold" fill="#fff">I have a Dream</text>
 </svg>
