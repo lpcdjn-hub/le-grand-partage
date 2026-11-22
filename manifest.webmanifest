@@ -16,16 +16,22 @@
   "orientation": "portrait",
   "icons": [
     {
-      "src": "d37fdc4e-70bc-4581-a5bb-f5ae12c0c842.png?v=brand-20261123",
-      "sizes": "192x192",
-      "type": "image/png",
+      "src": "app-logo.jpg?v=official-app-icon-20261122",
+      "sizes": "64x64",
+      "type": "image/jpeg",
       "purpose": "any"
     },
     {
-      "src": "d37fdc4e-70bc-4581-a5bb-f5ae12c0c842.png?v=brand-20261123",
+      "src": "app-logo.jpg?v=official-app-icon-20261122",
+      "sizes": "192x192",
+      "type": "image/jpeg",
+      "purpose": "any"
+    },
+    {
+      "src": "app-logo.jpg?v=official-app-icon-20261122",
       "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "any maskable"
+      "type": "image/jpeg",
+      "purpose": "any"
     }
   ]
 }
