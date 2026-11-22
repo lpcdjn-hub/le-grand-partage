@@ -1,5 +1,5 @@
-const CACHE_NAME = "grand-partage-shell-v20-optimized-appicon";
-const SHELL = ["/le-grand-partage/", "/le-grand-partage/manifest.webmanifest?v=appicon-20261122b", "/le-grand-partage/icon.svg?v=appicon-20261122b", "/le-grand-partage/icon-192.svg?v=appicon-20261122b", "/le-grand-partage/icon-512.svg?v=appicon-20261122b", "/le-grand-partage/logo.svg", "/le-grand-partage/app-icon.jpg"];
+const CACHE_NAME = "grand-partage-shell-v21-logo-refresh";
+const SHELL = ["/le-grand-partage/", "/le-grand-partage/manifest.webmanifest?v=logo-20261122c", "/le-grand-partage/icon.svg?v=logo-20261122c", "/le-grand-partage/icon-192.svg?v=logo-20261122c", "/le-grand-partage/icon-512.svg?v=logo-20261122c", "/le-grand-partage/logo.svg", "/le-grand-partage/app-icon.jpg"];
 self.addEventListener("install", event => {
   event.waitUntil(caches.open(CACHE_NAME).then(cache => cache.addAll(SHELL)).then(() => self.skipWaiting()));
 });
