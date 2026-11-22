@@ -1,8 +1,8 @@
-const CACHE_NAME = "grand-partage-shell-v34-svg-icon-20261122";
+const CACHE_NAME = "grand-partage-shell-v35-logo-app-20261122";
 const SHELL = [
   "/le-grand-partage/",
-  "/le-grand-partage/manifest.webmanifest?v=svg-icon-20261122",
-  "/le-grand-partage/app-icon.svg?v=svg-icon-20261122"
+  "/le-grand-partage/manifest.webmanifest?v=logo-app-20261122",
+  "/le-grand-partage/app-icon.svg?v=logo-app-20261122"
 ];
 self.addEventListener("install", event => {
   event.waitUntil(caches.open(CACHE_NAME).then(cache => cache.addAll(SHELL)).then(() => self.skipWaiting()));
