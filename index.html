@@ -222,7 +222,7 @@ function openAuth(){authMode="login";updateAuthMode();$("#authModal").showModal(
 function updateAuthMode(){$("#authTitle").textContent=authMode==="login"?"Connexion":"Créer un compte";$("#authSubmit").textContent=authMode==="login"?"Se connecter":"Créer mon compte";$("#authToggle").textContent=authMode==="login"?"Créer un compte":"J’ai déjà un compte";$("#nameWrap").hidden=authMode==="login";}
 async function loadListings(){
   $("#listings").innerHTML='<div class="empty">Chargement des annonces…</div>';
-  const {data,error}=await db.from("listings").select("id,user_id,title,category,city,description,image_url,status,created_at").eq("status","available").order("created_at",{ascending:false}).limit(100);
+  const {data,error}=await db.from("listings").select("id,user_id,title,category,city,description,image_url,status,created_at").eq("status","available").neq("title","Test").order("created_at",{ascending:false}).limit(100);
   if(error){$("#listings").innerHTML='<div class="empty">Impossible de charger les annonces pour le moment. Vérifiez la connexion à Supabase.</div>';console.error(error);return;}
   rows=data||[];
   const ids=[...new Set(rows.map(x=>x.user_id))];
