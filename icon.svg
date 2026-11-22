@@ -1,11 +1,26 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-<rect width="512" height="512" rx="110" fill="#fff"/>
+<rect width="512" height="512" rx="100" fill="#fff"/>
+<defs>
+ <radialGradient id="sea" cx="32%" cy="28%" r="78%"><stop stop-color="#49d4ff"/><stop offset="1" stop-color="#0752a8"/></radialGradient>
+ <clipPath id="globe"><circle cx="256" cy="256" r="137"/></clipPath>
+</defs>
+<!-- Earth -->
+<circle cx="256" cy="256" r="137" fill="url(#sea)" stroke="#d7f4ff" stroke-width="6"/>
+<g clip-path="url(#globe)" fill="#65d348" stroke="#b9f38e" stroke-width="4" stroke-linejoin="round">
+ <path d="M126 165l37-31 49 7 28 30-12 36-38 15-14 37-44-12-26-38z"/>
+ <path d="M224 111l42-11 35 21 10 35-29 21-34-15-23-22z"/>
+ <path d="M296 191l48-21 40 21 28 39-31 30-27 41-39-13-13-43-25-18z"/>
+ <path d="M211 283l37-22 35 19 17 42-31 44-43-18-29-34z"/>
+</g>
+<!-- Three distinct recycling arrows, with solid arrowheads -->
+<g fill="none" stroke="#159447" stroke-width="24" stroke-linecap="round">
+ <path d="M153 111 Q256 61 352 115"/>
+ <path d="M374 172 Q424 265 355 355"/>
+ <path d="M323 390 Q207 435 125 350"/>
+</g>
 <g fill="#159447">
-<!-- Arrow 1: upper, pointing right -->
-<path d="M112 108 H300 V68 L390 150 L300 232 V192 H112 Z"/>
-<!-- Arrow 2: lower-right, pointing down-left -->
-<path d="M360 194 L395 214 L300 345 L335 370 L220 390 L260 275 L285 305 Z"/>
-<!-- Arrow 3: lower-left, pointing up-left -->
-<path d="M188 350 L153 370 L70 235 L35 255 L80 140 L175 220 L135 205 Z"/>
+ <path d="M337 83 L399 128 L337 153 L347 119 Z"/>
+ <path d="M395 330 L363 405 L325 348 L363 361 Z"/>
+ <path d="M144 386 L79 335 L143 313 L127 349 Z"/>
 </g>
 </svg>
