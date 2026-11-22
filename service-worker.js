@@ -1,10 +1,8 @@
-const CACHE_NAME = "grand-partage-shell-v38-pwa-install-fix-20261123";
+const CACHE_NAME = "grand-partage-shell-v39-exact-install-icon-20261123";
 const SHELL = [
   "/le-grand-partage/",
-  "/le-grand-partage/manifest.webmanifest?v=pwa-fix-20261123",
-  "/le-grand-partage/app-logo.jpg?v=logo-exact-20261123",
-  "/le-grand-partage/icon-192.png?v=pwa-fix-20261123",
-  "/le-grand-partage/icon-512.png?v=pwa-fix-20261123"
+  "/le-grand-partage/manifest.webmanifest?v=install-logo-fix-2-20261123",
+  "/le-grand-partage/app-logo.jpg?v=install-logo-fix-2-20261123",
 ];
 self.addEventListener("install", event => {
   event.waitUntil(
