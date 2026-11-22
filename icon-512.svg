@@ -2,25 +2,23 @@
 <rect width="512" height="512" rx="100" fill="#fff"/>
 <defs>
  <linearGradient id="ocean" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#4cc8f5"/><stop offset="1" stop-color="#0755a8"/></linearGradient>
- <linearGradient id="green" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#a7ef48"/><stop offset=".55" stop-color="#21b74b"/><stop offset="1" stop-color="#08713a"/></linearGradient>
- <clipPath id="globe"><circle cx="256" cy="256" r="150"/></clipPath>
- <filter id="shadow"><feDropShadow dx="0" dy="8" stdDeviation="8" flood-color="#145a36" flood-opacity=".18"/></filter>
+ <linearGradient id="green" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#b7f34a"/><stop offset=".5" stop-color="#28b84b"/><stop offset="1" stop-color="#08713a"/></linearGradient>
+ <filter id="shadow"><feDropShadow dx="0" dy="5" stdDeviation="7" flood-color="#145a36" flood-opacity=".2"/></filter>
+ <clipPath id="globe"><circle cx="256" cy="256" r="133"/></clipPath>
+ <marker id="arrow" markerWidth="12" markerHeight="12" refX="9" refY="6" orient="auto" markerUnits="strokeWidth"><path d="M0 0L12 6L0 12Z" fill="#20a943"/></marker>
 </defs>
-<circle cx="256" cy="256" r="150" fill="url(#ocean)" stroke="#d7f4ff" stroke-width="5" filter="url(#shadow)"/>
+<circle cx="256" cy="256" r="133" fill="url(#ocean)" stroke="#d7f4ff" stroke-width="5" filter="url(#shadow)"/>
 <g clip-path="url(#globe)" fill="#78d34c" stroke="#baf58e" stroke-width="3">
- <path d="M115 175l35-29 42 4 24 29-10 28-35 11-16 31-39-14-20-35z"/>
+ <path d="M119 175l35-29 42 4 24 29-10 28-35 11-16 31-39-14-20-35z"/>
  <path d="M231 118l37-10 32 18 5 30-30 19-27-12-22-20z"/>
  <path d="M293 197l49-19 37 20 18 36-28 26-24 39-33-14-9-41-25-18z"/>
  <path d="M215 278l35-19 32 17 15 38-27 40-42-17-25-32z"/>
  <path d="M377 116l35 8 22 30-20 22-33-9-19-25z"/>
 </g>
-<g fill="none" stroke="url(#green)" stroke-width="28" stroke-linecap="round" stroke-linejoin="round" filter="url(#shadow)">
- <path d="M141 151A151 151 0 0 1 337 137"/>
- <path d="M316 108l43 28-47 15"/>
- <path d="M371 341A151 151 0 0 1 166 362"/>
- <path d="M186 391l-45-30 48-14"/>
- <path d="M129 286A151 151 0 0 1 133 174"/>
- <path d="M112 190l26-44 22 45"/>
+<circle cx="256" cy="256" r="113" fill="none" stroke="#ffffff" stroke-opacity=".35" stroke-width="3"/>
+<g fill="none" stroke="url(#green)" stroke-width="25" stroke-linecap="round" filter="url(#shadow)">
+ <path d="M154 125 A172 172 0 0 1 344 126" marker-end="url(#arrow)"/>
+ <path d="M392 207 A172 172 0 0 1 251 426" marker-end="url(#arrow)"/>
+ <path d="M221 426 A172 172 0 0 1 117 207" marker-end="url(#arrow)"/>
 </g>
-<circle cx="256" cy="256" r="150" fill="none" stroke="#fff" stroke-width="5" opacity=".75"/>
 </svg>
