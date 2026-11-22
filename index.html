@@ -119,6 +119,13 @@ footer{background:#123f33!important;}
  .heroArt img{display:block!important;width:100vw!important;max-width:100vw!important;height:auto!important;max-height:none!important;margin:0!important;padding:0!important;border-radius:0!important;object-fit:contain!important;object-position:center!important;}
  .hero{padding-bottom:16px!important;}
 }
+
+/* Correction robuste : affiche pleine largeur mobile, hors contraintes de grille */
+@media(max-width:760px){
+ .hero .wrap.heroGrid{display:grid!important;grid-template-columns:minmax(0,1fr)!important;width:100%!important;max-width:none!important;}
+ .hero .wrap.heroGrid>.heroArt{display:block!important;grid-column:1!important;position:relative!important;left:50%!important;transform:translateX(-50%)!important;width:100vw!important;max-width:100vw!important;min-width:100vw!important;margin:16px 0 0!important;padding:0!important;border:0!important;border-radius:0!important;background:none!important;box-shadow:none!important;filter:none!important;overflow:visible!important;}
+ .hero .wrap.heroGrid>.heroArt>img{display:block!important;width:100vw!important;max-width:100vw!important;min-width:100vw!important;height:auto!important;max-height:none!important;margin:0!important;padding:0!important;border:0!important;border-radius:0!important;object-fit:contain!important;object-position:center!important;}
+}
 </style>
 </head>
 <body>
