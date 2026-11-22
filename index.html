@@ -134,6 +134,13 @@ footer{background:#123f33!important;}
  .hero .heroArt img{display:block!important;width:100%!important;max-width:100%!important;min-width:0!important;height:auto!important;max-height:none!important;margin:0!important;padding:0!important;border:0!important;border-radius:12px!important;object-fit:contain!important;object-position:center!important;}
  .hero .wrap{width:100%!important;max-width:none!important;padding-left:15px!important;padding-right:15px!important;}
 }
+
+/* Mobile poster final sizing: larger, centered, readable, while keeping its portrait ratio */
+@media(max-width:760px){
+ .hero .wrap.heroGrid{width:100%!important;max-width:none!important;grid-template-columns:minmax(0,1fr)!important;}
+ .hero .wrap.heroGrid .heroArt{display:block!important;position:relative!important;left:auto!important;transform:none!important;width:min(100%,420px)!important;max-width:420px!important;min-width:0!important;margin:18px auto 0!important;padding:0!important;border:0!important;border-radius:0!important;background:transparent!important;box-shadow:none!important;filter:none!important;overflow:visible!important;}
+ .hero .wrap.heroGrid .heroArt img{display:block!important;width:100%!important;max-width:100%!important;min-width:0!important;height:auto!important;max-height:none!important;margin:0!important;padding:0!important;border:0!important;border-radius:12px!important;object-fit:contain!important;object-position:center!important;}
+}
 </style>
 </head>
 <body>
