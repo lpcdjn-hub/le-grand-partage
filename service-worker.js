@@ -1,8 +1,9 @@
-const CACHE_NAME = "grand-partage-shell-v39-exact-install-icon-20261123";
+const CACHE_NAME = "grand-partage-shell-v40-svg-install-icon-20261123";
 const SHELL = [
   "/le-grand-partage/",
   "/le-grand-partage/manifest.webmanifest?v=install-logo-fix-2-20261123",
   "/le-grand-partage/app-logo.jpg?v=install-logo-fix-2-20261123",
+  "/le-grand-partage/pwa-icon.svg?v=20261123-1",
 ];
 self.addEventListener("install", event => {
   event.waitUntil(
