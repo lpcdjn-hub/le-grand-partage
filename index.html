@@ -11,12 +11,12 @@
 <meta property="og:title" content="Le Grand Partage — Donner, partager, recommencer">
 <meta property="og:description" content="Donnez gratuitement, trouvez des objets près de chez vous et créez du lien. La solidarité donne une seconde vie aux objets.">
 <meta property="og:url" content="https://lpcdjn-hub.github.io/le-grand-partage/">
-<meta property="og:image" content="https://lpcdjn-hub.github.io/le-grand-partage/app-logo.jpg?v=official-app-icon-20261122"><meta property="og:image:alt" content="Le Grand Partage — Donner, Partager, Recommencer">
-<meta name="twitter:card" content="summary"><meta name="twitter:image" content="https://lpcdjn-hub.github.io/le-grand-partage/app-logo.jpg?v=official-app-icon-20261122">
+<meta property="og:image" content="https://lpcdjn-hub.github.io/le-grand-partage/app-logo.jpg?v=logo-app-20261122"><meta property="og:image:alt" content="Le Grand Partage — Donner, Partager, Recommencer">
+<meta name="twitter:card" content="summary"><meta name="twitter:image" content="https://lpcdjn-hub.github.io/le-grand-partage/app-logo.jpg?v=logo-app-20261122">
 <meta name="twitter:title" content="Le Grand Partage — Donner, partager, recommencer">
 <meta name="twitter:description" content="Donnez gratuitement, trouvez des objets près de chez vous et créez du lien.">
 
-<meta name="theme-color" content="#176b52"><link rel="manifest" href="manifest.webmanifest?v=svg-icon-20261122"><link rel="icon" href="app-logo.jpg?v=official-app-icon-20261122" type="image/jpeg"><script src="https://unpkg.com/@supabase/supabase-js@2" onerror="this.onerror=null;this.src=\'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2\'"></script>
+<meta name="theme-color" content="#176b52"><link rel="manifest" href="manifest.webmanifest?v=logo-app-20261122"><link rel="icon" href="app-logo.jpg?v=logo-app-20261122" type="image/jpeg"><script src="https://unpkg.com/@supabase/supabase-js@2" onerror="this.onerror=null;this.src=\'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2\'"></script>
 <title>Le Grand Partage — Donnons une seconde vie aux objets</title>
 <style>
 :root{--green:#176b52;--deep:#104b3b;--mint:#e8f4ee;--cream:#fbfaf6;--ink:#1d2b25;--muted:#66736c;--line:#e3e9e4;--orange:#e98b4a}
@@ -309,7 +309,7 @@ header .brand img.logo{object-fit:contain!important;}
 </style>
 </head>
 <body>
-<header><div class="wrap top"><a class="brand" href="#"><img class="logo" src="app-logo.jpg?v=official-app-icon-20261122" alt="Logo Le Grand Partage">Le Grand Partage</a><nav class="nav"><button class="btn light" id="installApp">Installer l’application</button><button class="btn plain" id="howBtn">Comment ça marche</button><button class="btn light" id="membersTop">👥 Galerie des membres</button><button class="btn light" id="shareTop">🔗 Partager</button><button class="btn light" id="authTop">Connexion</button><button class="btn light" id="adminTop" hidden>🛡️ Administration</button><button class="btn primary" id="addTop">＋ Déposer une annonce</button></nav></div></header>
+<header><div class="wrap top"><a class="brand" href="#"><img class="logo" src="app-logo.jpg?v=logo-app-20261122" alt="Logo Le Grand Partage">Le Grand Partage</a><nav class="nav"><button class="btn light" id="installApp">Installer l’application</button><button class="btn plain" id="howBtn">Comment ça marche</button><button class="btn light" id="membersTop">👥 Galerie des membres</button><button class="btn light" id="shareTop">🔗 Partager</button><button class="btn light" id="authTop">Connexion</button><button class="btn light" id="adminTop" hidden>🛡️ Administration</button><button class="btn primary" id="addTop">＋ Déposer une annonce</button></nav></div></header>
 <section class="hero"><div class="wrap heroGrid"><div><div class="eyebrow">Donner • Recevoir • Réutiliser</div><h1>Ce qui ne vous sert plus peut faire le bonheur d’un autre.</h1><p>Une plateforme de partage pour donner une seconde vie aux objets, créer du lien et consommer autrement.</p><button class="btn primary" id="addHero">Je partage un objet gratuitement</button><button class="btn light" id="inviteHero" style="margin-left:8px">❤️ Inviter des amis</button><div class="stats"><div><b>♻️ Seconde vie</b>Moins de gaspillage</div><div><b>💚 Entraide</b>Plus de solidarité</div><div><b>📍 Près de chez vous</b>Du partage local</div></div></div><div class="heroArt" aria-hidden="true"><img src="d37fdc4e-70bc-4581-a5bb-f5ae12c0c842.png" alt="Affiche illustrée Le Grand Partage, donner et partager pour une seconde vie aux objets"></div></div></section>
 <main class="wrap"><div class="sectionHead"><div><div class="eyebrow">Les trouvailles du moment</div><h2>Les objets à partager</h2><p>Recherchez ce dont vous avez besoin ou proposez ce que vous n’utilisez plus.</p></div></div>
 <div class="filters"><input class="field" id="search" placeholder="🔎 Rechercher un objet, un mot-clé…" aria-label="Rechercher"><select class="field" id="sort"><option value="recent">Plus récents</option><option value="az">Nom A à Z</option></select></div>
@@ -532,6 +532,6 @@ let installPrompt=null;const installButton=$("#installApp");
 window.addEventListener("beforeinstallprompt",event=>{event.preventDefault();installPrompt=event;installButton.hidden=false;});
 installButton.addEventListener("click",async()=>{if(!installPrompt){alert("Pour installer Le Grand Partage sur Android : ouvrez le menu ⋮ de Chrome, puis choisissez « Installer l’application » ou « Ajouter à l’écran d’accueil ».");return;}installPrompt.prompt();await installPrompt.userChoice;installPrompt=null;installButton.hidden=true;});
 window.addEventListener("appinstalled",()=>{installButton.hidden=true;});
-if("serviceWorker" in navigator&&location.protocol==="https:")window.addEventListener("load",()=>navigator.serviceWorker.register("/le-grand-partage/service-worker.js?v=svg-icon-20261122").catch(()=>{}));
+if("serviceWorker" in navigator&&location.protocol==="https:")window.addEventListener("load",()=>navigator.serviceWorker.register("/le-grand-partage/service-worker.js?v=logo-app-20261122").catch(()=>{}));
 </script>
 </body></html>
