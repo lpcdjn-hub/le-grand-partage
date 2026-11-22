@@ -111,6 +111,14 @@ footer{background:#123f33!important;}
  .heroArt{width:100%!important;max-width:none!important;margin:14px 0 0!important;padding:5px!important;}
  .heroArt img{width:100%!important;max-width:none!important;height:auto!important;max-height:none!important;object-fit:contain!important;object-position:center!important;}
 }
+
+/* Override final mobile poster rules: full-width edge-to-edge image */
+@media(max-width:760px){
+ .heroGrid{grid-template-columns:1fr!important;gap:12px!important;}
+ .heroArt{display:block!important;width:100vw!important;max-width:100vw!important;margin:12px calc(50% - 50vw) 0!important;padding:0!important;border:0!important;border-radius:0!important;background:transparent!important;box-shadow:none!important;overflow:visible!important;}
+ .heroArt img{display:block!important;width:100vw!important;max-width:100vw!important;height:auto!important;max-height:none!important;margin:0!important;padding:0!important;border-radius:0!important;object-fit:contain!important;object-position:center!important;}
+ .hero{padding-bottom:16px!important;}
+}
 </style>
 </head>
 <body>
