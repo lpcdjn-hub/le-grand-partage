@@ -227,6 +227,48 @@ header .brand img.logo{object-fit:contain!important;}
  body header nav.nav button#addTop{flex:1 1 100%!important;width:100%!important;}
 }
 @media screen and (max-width:390px){body header nav.nav button.btn{font-size:10px!important;}}
+
+/* MOBILE NAVIGATION OVERRIDE — robust grid, no horizontal clipping */
+@media (max-width: 760px) {
+  html, body { overflow-x: hidden !important; }
+  body > header { width:100% !important; max-width:100% !important; overflow:visible !important; }
+  body > header > div.wrap.top {
+    display:grid !important; grid-template-columns:1fr !important;
+    width:100% !important; max-width:100% !important; min-width:0 !important;
+    height:auto !important; padding:8px 10px !important; margin:0 !important;
+    box-sizing:border-box !important; gap:8px !important;
+  }
+  body > header > div.wrap.top > a.brand {
+    width:100% !important; min-width:0 !important; max-width:100% !important;
+    display:flex !important; flex-direction:row !important; align-items:center !important;
+    justify-content:flex-start !important; gap:8px !important;
+    font-size:15px !important; line-height:1.2 !important;
+    white-space:normal !important; box-sizing:border-box !important;
+  }
+  body > header > div.wrap.top > a.brand img.logo {
+    display:block !important; width:40px !important; height:40px !important;
+    min-width:40px !important; max-width:40px !important; object-fit:contain !important;
+  }
+  body > header > nav.nav {
+    display:grid !important; grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+    width:100% !important; max-width:100% !important; min-width:0 !important;
+    gap:6px !important; margin:0 !important; padding:0 !important;
+    box-sizing:border-box !important; overflow:visible !important;
+  }
+  body > header > nav.nav > button.btn {
+    display:flex !important; width:100% !important; min-width:0 !important;
+    max-width:100% !important; min-height:38px !important; height:auto !important;
+    margin:0 !important; padding:6px 4px !important; box-sizing:border-box !important;
+    align-items:center !important; justify-content:center !important;
+    white-space:normal !important; text-align:center !important;
+    overflow-wrap:anywhere !important; word-break:normal !important;
+    font-size:11px !important; line-height:1.15 !important;
+  }
+  body > header > nav.nav > button#addTop { grid-column:1 / -1 !important; }
+}
+@media (max-width:380px) {
+  body > header > nav.nav > button.btn { font-size:10px !important; }
+}
 </style>
 </head>
 <body>
