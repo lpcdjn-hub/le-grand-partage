@@ -1,5 +1,5 @@
-const CACHE_NAME = "grand-partage-shell-v30-mobile-nav-logo-fix-20261122";
-const SHELL = ["/le-grand-partage/", "/le-grand-partage/manifest.webmanifest?v=pwa-fix-20261122k", "/le-grand-partage/icon-192.png", "/le-grand-partage/icon-512.png"];
+const CACHE_NAME = "grand-partage-shell-v31-brand-logo-20261123";
+const SHELL = ["/le-grand-partage/", "/le-grand-partage/manifest.webmanifest?v=brand-20261123", "/le-grand-partage/d37fdc4e-70bc-4581-a5bb-f5ae12c0c842.png", "/le-grand-partage/d37fdc4e-70bc-4581-a5bb-f5ae12c0c842.png"];
 self.addEventListener("install", event => {event.waitUntil(caches.open(CACHE_NAME).then(cache => cache.addAll(SHELL)).then(() => self.skipWaiting()));});
 self.addEventListener("activate", event => {event.waitUntil(caches.keys().then(keys => Promise.all(keys.filter(key => key !== CACHE_NAME).map(key => caches.delete(key)))).then(() => self.clients.claim()));});
 self.addEventListener("fetch", event => {if (event.request.method !== "GET" || new URL(event.request.url).origin !== self.location.origin) return;event.respondWith(fetch(event.request).then(response => {if (response.ok) { const copy = response.clone(); caches.open(CACHE_NAME).then(cache => cache.put(event.request, copy)); }return response;}).catch(() => caches.match(event.request).then(cached => cached || caches.match("/le-grand-partage/"))));});
