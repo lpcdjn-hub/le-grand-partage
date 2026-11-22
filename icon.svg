@@ -1,26 +1,36 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-<rect width="512" height="512" rx="100" fill="#fff"/>
 <defs>
- <radialGradient id="sea" cx="32%" cy="28%" r="78%"><stop stop-color="#49d4ff"/><stop offset="1" stop-color="#0752a8"/></radialGradient>
- <clipPath id="globe"><circle cx="256" cy="256" r="137"/></clipPath>
+ <linearGradient id="sky" x2="0" y2="1"><stop stop-color="#1597ff"/><stop offset="1" stop-color="#b6e8ff"/></linearGradient>
+ <linearGradient id="green" x2="0" y2="1"><stop stop-color="#c9ff39"/><stop offset=".45" stop-color="#4fd313"/><stop offset="1" stop-color="#08752b"/></linearGradient>
+ <radialGradient id="ocean" cx=".28" cy=".2" r=".85"><stop stop-color="#2ed9ff"/><stop offset=".5" stop-color="#0875ce"/><stop offset="1" stop-color="#073d7b"/></radialGradient>
+ <clipPath id="earth"><circle cx="256" cy="275" r="142"/></clipPath>
+ <filter id="shadow"><feDropShadow dx="0" dy="5" stdDeviation="5" flood-color="#073c20" flood-opacity=".5"/></filter>
 </defs>
-<!-- Earth -->
-<circle cx="256" cy="256" r="137" fill="url(#sea)" stroke="#d7f4ff" stroke-width="6"/>
-<g clip-path="url(#globe)" fill="#65d348" stroke="#b9f38e" stroke-width="4" stroke-linejoin="round">
- <path d="M126 165l37-31 49 7 28 30-12 36-38 15-14 37-44-12-26-38z"/>
- <path d="M224 111l42-11 35 21 10 35-29 21-34-15-23-22z"/>
- <path d="M296 191l48-21 40 21 28 39-31 30-27 41-39-13-13-43-25-18z"/>
- <path d="M211 283l37-22 35 19 17 42-31 44-43-18-29-34z"/>
+<rect width="512" height="512" rx="92" fill="url(#sky)"/>
+<path d="M0 128Q80 100 144 133T270 124T512 125V0H0Z" fill="#fff" opacity=".2"/>
+<text x="256" y="77" text-anchor="middle" font-family="Georgia,serif" font-style="italic" font-weight="bold" font-size="48" fill="#064b21" stroke="#fff" stroke-width="7" paint-order="stroke">Le Grand Partage</text>
+<g filter="url(#shadow)">
+ <circle cx="256" cy="275" r="147" fill="#efffbc"/>
+ <circle cx="256" cy="275" r="142" fill="url(#ocean)" stroke="#b9f8ff" stroke-width="5"/>
+ <g clip-path="url(#earth)" fill="#55db38" stroke="#c3ff8a" stroke-width="3">
+  <path d="M120 194l40-37 45 9 21 28-28 23-11 39-37-6-29-36z"/>
+  <path d="M228 148l42-17 38 25 28 36-32 25-37-12-25-29z"/>
+  <path d="M300 255l53-25 48 26 22 42-32 35-34 47-41-15-17-49-27-25z"/>
+  <path d="M210 306l37-18 39 27 16 45-35 42-43-23-25-40z"/>
+ </g>
+ <g fill="none" stroke="url(#green)" stroke-width="27" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M149 139Q258 75 350 143"/>
+  <path d="M371 182Q429 277 359 365"/>
+  <path d="M320 393Q204 438 129 349"/>
+ </g>
+ <g fill="#aaff2e" stroke="#fff" stroke-width="4">
+  <path d="M332 103l69 45-70 22 14-38z"/>
+  <path d="M393 336l-33 79-44-60 40 14z"/>
+  <path d="M140 384l-70-50 69-24-14 38z"/>
+ </g>
 </g>
-<!-- Three distinct recycling arrows, with solid arrowheads -->
-<g fill="none" stroke="#159447" stroke-width="24" stroke-linecap="round">
- <path d="M153 111 Q256 61 352 115"/>
- <path d="M374 172 Q424 265 355 355"/>
- <path d="M323 390 Q207 435 125 350"/>
-</g>
-<g fill="#159447">
- <path d="M337 83 L399 128 L337 153 L347 119 Z"/>
- <path d="M395 330 L363 405 L325 348 L363 361 Z"/>
- <path d="M144 386 L79 335 L143 313 L127 349 Z"/>
-</g>
+<text x="256" y="283" text-anchor="middle" font-family="Georgia,serif" font-style="italic" font-weight="bold" font-size="38" fill="#fff" stroke="#101d26" stroke-width="8" paint-order="stroke" filter="url(#shadow)">I have a Dream</text>
+<rect x="48" y="425" width="416" height="62" rx="16" fill="#e7b76a" stroke="#7c451d" stroke-width="5"/>
+<text x="256" y="463" text-anchor="middle" font-family="Georgia,serif" font-style="italic" font-weight="bold" font-size="25" fill="#173d20">Donner · Partager · Recommencer</text>
+<rect x="9" y="9" width="494" height="494" rx="86" fill="none" stroke="#72ff19" stroke-width="8"/>
 </svg>
