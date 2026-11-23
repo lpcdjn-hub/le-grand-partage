@@ -421,7 +421,7 @@ async function loadListings(){
   const sharedId=new URLSearchParams(location.search).get("listing");if(sharedId){const shared=rows.find(x=>x.id===sharedId);if(shared){$("#search").value=shared.title;category="Tous";document.querySelectorAll(".chip").forEach(x=>x.classList.toggle("active",x.dataset.cat==="Tous"));}}
   const ids=[...new Set(rows.map(x=>x.user_id))];
   let profiles={};
-  if(ids.length){const p=await db.from("profiles").select("id,display_name").in("id",ids);if(!p.error)(p.data||[]).forEach(x=>profiles[x.id]=x.display_name);}
+  if(ids.length){const p=await db.rpc("public_listing_member_names",{p_user_ids:ids});if(!p.error)(p.data||[]).forEach(x=>profiles[x.user_id]=x.display_name);}
   render(profiles);
 }
 let profileNames={};
