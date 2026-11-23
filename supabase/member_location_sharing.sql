@@ -83,3 +83,15 @@ begin
 end;
 $$;
 grant execute on function public.admin_list_member_locations() to authenticated;
+
+create or replace function public.member_location_shared()
+returns boolean
+language sql
+security definer
+set search_path = ''
+as $$
+  select auth.uid() is not null and exists (
+    select 1 from public.member_locations where user_id=auth.uid()
+  );
+$$;
+grant execute on function public.member_location_shared() to authenticated;
