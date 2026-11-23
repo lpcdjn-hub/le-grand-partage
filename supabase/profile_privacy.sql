@@ -5,7 +5,18 @@
 
 ALTER TABLE public.profiles ENABLE ROW LEVEL SECURITY;
 DROP POLICY IF EXISTS "Profiles are publicly readable" ON public.profiles;
-DROP POLICY IF EXISTS "Members read own profile" ON public.profiles;
+-- Remove every existing SELECT policy on profiles. Policies are OR-combined,
+-- so an older permissive policy would otherwise keep profiles publicly readable.
+DO $
+DECLARE policy_name text;
+BEGIN
+  FOR policy_name IN
+    SELECT policyname FROM pg_policies
+    WHERE schemaname = 'public' AND tablename = 'profiles' AND cmd = 'SELECT'
+  LOOP
+    EXECUTE format('DROP POLICY IF EXISTS %I ON public.profiles', policy_name);
+  END LOOP;
+END $;
 CREATE POLICY "Members read own profile"
 ON public.profiles FOR SELECT TO authenticated
 USING (auth.uid() = id OR public.is_admin());
