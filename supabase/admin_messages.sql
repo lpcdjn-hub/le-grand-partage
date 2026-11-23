@@ -38,3 +38,6 @@ $$;
 
 revoke all on function public.admin_list_messages() from public, anon;
 grant execute on function public.admin_list_messages() to authenticated;
+
+-- Rafraîchit le cache PostgREST/Supabase pour que db.rpc() trouve la fonction.
+notify pgrst, 'reload schema';
