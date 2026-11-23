@@ -13,7 +13,7 @@ Deno.serve(async (req) => {
     const {message_id}=await req.json();
     if(!message_id) return new Response("message_id required",{status:400});
     const {data:message,error}=await supabase.from("messages").select("id,body,recipient_id,listing_id").eq("id",message_id).single();
-    if(error||!message) return new Response("Message not found",{status:404});
+    if(error||!message) return new Response("Message not found",{status:404});\n    if(message.sender_id!==user.id)return new Response("Forbidden",{status:403});
     const {data:subs}=await supabase.from("push_subscriptions").select("subscription").eq("user_id",message.recipient_id);
     const payload=JSON.stringify({title:"Le Grand Partage — Nouveau message",body:String(message.body||"Vous avez reçu un message").slice(0,160),url:"/le-grand-partage/?messages=1",tag:"message-"+message.id});
     const results=await Promise.all((subs||[]).map(async row=>{
