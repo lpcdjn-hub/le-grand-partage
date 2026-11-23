@@ -1,43 +1,41 @@
--- Le Grand Partage — autoriser les réponses aux conversations reçues
+-- Le Grand Partage — autoriser les réponses dans les conversations
 -- À exécuter dans Supabase > SQL Editor. Idempotent.
-
-CREATE OR REPLACE FUNCTION public.can_send_listing_message(
-  p_listing_id uuid,
-  p_sender_id uuid,
-  p_recipient_id uuid
-)
-RETURNS boolean
-LANGUAGE sql
-STABLE
-SECURITY DEFINER
-SET search_path = public
-AS $$
-  SELECT EXISTS (
-    SELECT 1 FROM public.listings l
-    WHERE l.id = p_listing_id
-      AND (
-        -- Premier contact : un membre écrit au propriétaire de l'annonce.
-        (l.user_id = p_recipient_id AND p_sender_id <> l.user_id)
-        OR
-        -- Réponse : le propriétaire répond à une personne ayant déjà contacté
-        -- ce propriétaire au sujet de cette annonce.
-        (l.user_id = p_sender_id AND EXISTS (
-          SELECT 1 FROM public.messages m
-          WHERE m.listing_id = p_listing_id
-            AND m.sender_id = p_recipient_id
-            AND m.recipient_id = p_sender_id
-        ))
+create or replace function public.can_send_message(p_listing_id uuid, p_sender_id uuid, p_recipient_id uuid)
+returns boolean
+language sql
+security definer
+set search_path = ''
+as $$
+  select
+    p_sender_id <> p_recipient_id
+    and exists (
+      select 1 from public.listings l
+      where l.id = p_listing_id
+        and l.user_id in (p_sender_id, p_recipient_id)
+    )
+    and (
+      exists (
+        select 1 from public.listings l
+        where l.id = p_listing_id and l.user_id = p_recipient_id
       )
-  );
+      or exists (
+        select 1 from public.messages m
+        where m.listing_id = p_listing_id
+          and ((m.sender_id = p_sender_id and m.recipient_id = p_recipient_id)
+            or (m.sender_id = p_recipient_id and m.recipient_id = p_sender_id))
+      )
+    );
 $$;
 
-REVOKE ALL ON FUNCTION public.can_send_listing_message(uuid,uuid,uuid) FROM PUBLIC;
-GRANT EXECUTE ON FUNCTION public.can_send_listing_message(uuid,uuid,uuid) TO authenticated;
+revoke all on function public.can_send_message(uuid,uuid,uuid) from public;
+grant execute on function public.can_send_message(uuid,uuid,uuid) to authenticated;
 
-DROP POLICY IF EXISTS "Sender writes own messages" ON public.messages;
-CREATE POLICY "Participants send messages on listing conversations"
-ON public.messages FOR INSERT TO authenticated
-WITH CHECK (
+drop policy if exists "Sender writes own messages" on public.messages;
+drop policy if exists "Participants send messages" on public.messages;
+drop policy if exists "Participants send messages on listing conversations" on public.messages;
+create policy "Participants send messages"
+on public.messages for insert to authenticated
+with check (
   auth.uid() = sender_id
-  AND public.can_send_listing_message(listing_id, sender_id, recipient_id)
+  and public.can_send_message(listing_id, sender_id, recipient_id)
 );
