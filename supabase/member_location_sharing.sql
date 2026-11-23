@@ -73,7 +73,7 @@ as $$
 begin
   if not public.is_admin() then raise exception 'Unauthorized'; end if;
   return query
-    select u.id,u.email,coalesce(p.display_name,'Membre'),p.city,
+    select u.id,u.email::text,coalesce(p.display_name,'Membre')::text,p.city::text,
            ml.latitude,ml.longitude,ml.accuracy_m,ml.shared_at
     from public.member_locations ml
     join auth.users u on u.id=ml.user_id
