@@ -411,8 +411,7 @@ async function openAccount(){if(!currentUser){openAuth();return;}$("#accountName
 function openListing(){if(!currentUser){openAuth();toast("Connectez-vous pour déposer une annonce.");return;}$("#modal").showModal();}
 function openAuth(){authMode="login";updateAuthMode();$("#authModal").showModal();}
 function updateAuthMode(){$("#authTitle").textContent=authMode==="login"?"Connexion":"Créer un compte";$("#authSubmit").textContent=authMode==="login"?"Se connecter":"Créer mon compte";$("#authToggle").textContent=authMode==="login"?"Créer un compte":"J’ai déjà un compte";$("#nameWrap").hidden=authMode==="login";}
-async function loadPublicMemberCount(){const el=$("#memberCount");if(!el)return;try{const {count,error}=await db.from("profiles").select("id",{count:"exact",head:true});if(error)throw error;el.textContent=Number(count||0).toLocaleString("fr-FR");}catch(error){el.textContent="";console.warn("Compteur membres indisponible",error);}}
-async function loadListings(){
+async function loadPublicMemberCount(){const el=$("#memberCount");if(!el)return;try{const {data,error}=await db.rpc("public_member_count");if(error)throw error;el.textContent=Number(data||0).toLocaleString("fr-FR");}catch(error){el.textContent="";console.warn("Compteur membres indisponible",error);}}(){
   loadPublicMemberCount();
   $("#listings").innerHTML='<div class="empty">Chargement des annonces…</div>';
   const {data,error}=await db.from("listings").select("id,user_id,title,category,city,description,image_url,status,created_at").eq("status","available").neq("title","Test").order("created_at",{ascending:false}).limit(100);
@@ -559,13 +558,13 @@ async function openMembers(){
  content.innerHTML='<div class="notice">Chargement des membres…</div>';
  $("#membersSearch").value="";modal.showModal();
  try{
-  const {data,error}=await db.from("profiles").select("id,display_name,city,created_at").order("created_at",{ascending:false}).limit(500);
+  const {data,error}=await db.rpc("admin_list_users");
   if(error)throw error;
-  memberGallery=data||[];
+  memberGallery=(data||[]).map(m=>({id:m.user_id,display_name:m.display_name,city:"",created_at:m.created_at}));
   renderMembers();
  }catch(error){
   console.error("Galerie des membres:",error);
-  content.innerHTML='<div class="notice">Impossible de charger la galerie des membres. Vérifiez les permissions Supabase de la table profiles.</div>';
+  content.innerHTML='<div class="notice">Impossible de charger la galerie des membres. Vérifiez les permissions Supabase et la fonction admin_list_users.</div>';
  }
 }
 function renderMembers(){
