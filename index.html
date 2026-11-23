@@ -411,7 +411,8 @@ async function openAccount(){if(!currentUser){openAuth();return;}$("#accountName
 function openListing(){if(!currentUser){openAuth();toast("Connectez-vous pour déposer une annonce.");return;}$("#modal").showModal();}
 function openAuth(){authMode="login";updateAuthMode();$("#authModal").showModal();}
 function updateAuthMode(){$("#authTitle").textContent=authMode==="login"?"Connexion":"Créer un compte";$("#authSubmit").textContent=authMode==="login"?"Se connecter":"Créer mon compte";$("#authToggle").textContent=authMode==="login"?"Créer un compte":"J’ai déjà un compte";$("#nameWrap").hidden=authMode==="login";}
-async function loadPublicMemberCount(){const el=$("#memberCount");if(!el)return;try{const {data,error}=await db.rpc("public_member_count");if(error)throw error;el.textContent=Number(data||0).toLocaleString("fr-FR");}catch(error){el.textContent="";console.warn("Compteur membres indisponible",error);}}(){
+async function loadPublicMemberCount(){const el=$("#memberCount");if(!el)return;try{const {data,error}=await db.rpc("public_member_count");if(error)throw error;el.textContent=Number(data||0).toLocaleString("fr-FR");}catch(error){el.textContent="";console.warn("Compteur membres indisponible",error);}}
+async function loadListings(){
   loadPublicMemberCount();
   $("#listings").innerHTML='<div class="empty">Chargement des annonces…</div>';
   const {data,error}=await db.from("listings").select("id,user_id,title,category,city,description,image_url,status,created_at").eq("status","available").neq("title","Test").order("created_at",{ascending:false}).limit(100);
