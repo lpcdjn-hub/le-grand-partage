@@ -16,9 +16,9 @@
   "orientation": "portrait",
   "icons": [
     {
-      "src": "/le-grand-partage/app-icon.svg?v=approved-logo-20261123-4",
-      "sizes": "any",
-      "type": "image/svg+xml",
+      "src": "/le-grand-partage/Le_Grand_Partage_logo_512(1).jpg?v=official-image-20261123-1",
+      "sizes": "512x512",
+      "type": "image/jpeg",
       "purpose": "any"
     }
   ]
