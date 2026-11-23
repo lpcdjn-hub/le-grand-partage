@@ -7,7 +7,7 @@ ALTER TABLE public.profiles ENABLE ROW LEVEL SECURITY;
 DROP POLICY IF EXISTS "Profiles are publicly readable" ON public.profiles;
 -- Remove every existing SELECT policy on profiles. Policies are OR-combined,
 -- so an older permissive policy would otherwise keep profiles publicly readable.
-DO $
+DO $privacy$
 DECLARE policy_name text;
 BEGIN
   FOR policy_name IN
@@ -16,7 +16,7 @@ BEGIN
   LOOP
     EXECUTE format('DROP POLICY IF EXISTS %I ON public.profiles', policy_name);
   END LOOP;
-END $;
+END $privacy$;
 CREATE POLICY "Members read own profile"
 ON public.profiles FOR SELECT TO authenticated
 USING (auth.uid() = id OR public.is_admin());
