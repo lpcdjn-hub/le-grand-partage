@@ -23,7 +23,7 @@ Deno.serve(async (req) => {
     let alertAdminUserId = "";
 
     if (!isInternal) {
-      const token = (req.headers.get("Authorization") || "").replace(/^Bearer\\s+/i, "");
+      const token = (req.headers.get("Authorization") || "").replace(/^Bearer\s+/i, "");
       if (!token) return Response.json({ error: "Unauthorized" }, { status: 401, headers: cors });
       const userClient = createClient(SUPABASE_URL, ANON_KEY, { global: { headers: { Authorization: "Bearer " + token } } });
       const { data: authData, error: authError } = await userClient.auth.getUser();
