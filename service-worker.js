@@ -1,4 +1,4 @@
-const CACHE_NAME = "grand-partage-shell-v45-count-20261123";
+const CACHE_NAME = "grand-partage-shell-v46-member-alerts-20261124";
 const SHELL = [
   "/le-grand-partage/",
   "/le-grand-partage/manifest.webmanifest?v=official-image-20261123-1",
@@ -13,7 +13,7 @@ self.addEventListener("activate", event => {
 self.addEventListener("push", event => {
   let payload = {title:"Le Grand Partage",body:"Vous avez reçu un nouveau message.",url:"/le-grand-partage/"};
   try { if(event.data) payload={...payload,...event.data.json()}; } catch {}
-  event.waitUntil(self.registration.showNotification(payload.title,{body:payload.body,icon:"/le-grand-partage/Le_Grand_Partage_logo_512(1).jpg",badge:"/le-grand-partage/Le_Grand_Partage_logo_512(1).jpg",data:{url:payload.url},tag:payload.tag||"lgp-message",renotify:true}));
+  event.waitUntil(self.registration.showNotification(payload.title,{body:payload.body,icon:"/le-grand-partage/Le_Grand_Partage_logo_512(1).jpg",badge:"/le-grand-partage/Le_Grand_Partage_logo_512(1).jpg",data:{url:payload.url},tag:payload.tag||"lgp-notification",renotify:true}));
 });
 self.addEventListener("notificationclick",event=>{
   event.notification.close();
