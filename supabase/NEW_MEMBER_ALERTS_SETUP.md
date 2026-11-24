@@ -4,7 +4,7 @@ Les alertes sont déclenchées côté serveur à chaque nouvelle inscription dan
 
 ## 1. Déployer l'Edge Function
 
-Déployer `supabase/functions/send-new-member-alert/index.ts` dans Supabase sous le nom `send-new-member-alert`.
+Déployer `supabase/functions/send-new-member-alert/index.ts` dans Supabase sous le nom `send-new-member-alert`. Le fichier `supabase/config.toml` désactive la vérification JWT de la passerelle pour cette fonction ; l'accès reste protégé dans le code par le rôle Super-Admin ou par le secret privé transmis par le déclencheur SQL.
 
 Dans Supabase > Edge Functions > Secrets, définir :
 - `SUPABASE_URL`
