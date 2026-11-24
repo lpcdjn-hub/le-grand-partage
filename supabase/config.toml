@@ -1,0 +1,2 @@
+[functions.send-new-member-alert]
+verify_jwt = false
