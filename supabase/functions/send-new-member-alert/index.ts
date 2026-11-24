@@ -17,18 +17,32 @@ Deno.serve(async (req) => {
   if (req.method !== "POST") return Response.json({ error: "Method not allowed" }, { status: 405, headers: cors });
 
   try {
-    const token = (req.headers.get("Authorization") || "").replace(/^Bearer\s+/i, "");
-    if (!token) return Response.json({ error: "Unauthorized" }, { status: 401, headers: cors });
+    const internalSecret = req.headers.get("x-alert-secret") || "";
+    const expectedSecret = Deno.env.get("NEW_MEMBER_ALERT_SECRET") || "";
+    const isInternal = Boolean(expectedSecret && internalSecret && internalSecret === expectedSecret);
+    let alertAdminUserId = "";
 
-    const userClient = createClient(SUPABASE_URL, ANON_KEY, { global: { headers: { Authorization: "Bearer " + token } } });
-    const { data: authData, error: authError } = await userClient.auth.getUser();
-    if (authError || !authData.user) return Response.json({ error: "Unauthorized" }, { status: 401, headers: cors });
-    const { data: isAdmin, error: adminError } = await userClient.rpc("is_admin");
-    if (adminError || isAdmin !== true) return Response.json({ error: "Forbidden" }, { status: 403, headers: cors });
+    if (!isInternal) {
+      const token = (req.headers.get("Authorization") || "").replace(/^Bearer\\s+/i, "");
+      if (!token) return Response.json({ error: "Unauthorized" }, { status: 401, headers: cors });
+      const userClient = createClient(SUPABASE_URL, ANON_KEY, { global: { headers: { Authorization: "Bearer " + token } } });
+      const { data: authData, error: authError } = await userClient.auth.getUser();
+      if (authError || !authData.user) return Response.json({ error: "Unauthorized" }, { status: 401, headers: cors });
+      const { data: isAdmin, error: adminError } = await userClient.rpc("is_admin");
+      if (adminError || isAdmin !== true) return Response.json({ error: "Forbidden" }, { status: 403, headers: cors });
+      alertAdminUserId = authData.user.id;
+    }
 
     const body = await req.json();
     const userId = String(body?.user_id || "");
     if (!userId) return Response.json({ error: "user_id required" }, { status: 400, headers: cors });
+    if (isInternal) {
+      const { data: admins, error: adminsError } = await supabaseAdmin.auth.admin.listUsers({ page: 1, perPage: 1000 });
+      if (adminsError) throw adminsError;
+      const adminUser = (admins.users || []).find(u => (u.email || "").toLowerCase() === "lp.cdjn@gmail.com");
+      if (!adminUser) throw new Error("Compte Super-Admin introuvable pour les notifications push.");
+      alertAdminUserId = adminUser.id;
+    }
 
     const { data: memberData, error: memberError } = await supabaseAdmin.auth.admin.getUserById(userId);
     if (memberError || !memberData.user) return Response.json({ error: "Member not found" }, { status: 404, headers: cors });
@@ -64,7 +78,7 @@ Deno.serve(async (req) => {
     const vapidPrivate = Deno.env.get("VAPID_PRIVATE_KEY");
     if (vapidPublic && vapidPrivate) {
       webpush.setVapidDetails(Deno.env.get("VAPID_SUBJECT") || "mailto:" + to, vapidPublic, vapidPrivate);
-      const { data: subscriptions, error: subError } = await supabaseAdmin.from("push_subscriptions").select("endpoint,subscription").eq("user_id", authData.user.id);
+      const { data: subscriptions, error: subError } = await supabaseAdmin.from("push_subscriptions").select("endpoint,subscription").eq("user_id", alertAdminUserId);
       if (subError) pushError = subError.message;
       else {
         for (const row of subscriptions || []) {
