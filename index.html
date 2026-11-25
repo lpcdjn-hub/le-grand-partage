@@ -513,7 +513,7 @@ $("#passwordChangeForm").onsubmit=async e=>{
   if(verified.error)throw new Error("Le mot de passe actuel est incorrect.");
   if(verified.data?.user?.id!==currentUser.id)throw new Error("Le compte connecté ne correspond pas au compte attendu. Aucune modification effectuée.");
   status.textContent="Enregistrement du nouveau mot de passe…";
-  const changed=await db.auth.updateUser({password:newPassword,currentPassword:currentPassword});
+  const changed=await db.auth.updateUser({password:newPassword,current_password:currentPassword});
   if(changed.error)throw changed.error;
   form.reset();status.textContent="Votre mot de passe a été modifié avec succès.";
   toast("Mot de passe modifié avec succès.");
