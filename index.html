@@ -652,6 +652,6 @@ let installPrompt=null;const installButton=$("#installApp");
 window.addEventListener("beforeinstallprompt",event=>{event.preventDefault();installPrompt=event;installButton.hidden=false;});
 installButton.addEventListener("click",async()=>{if(!installPrompt){alert("Chrome ne détecte pas encore l’installation. Après le déploiement, rechargez cette page. Si l’option est disponible, ouvrez le menu ⋮ de Chrome et choisissez « Installer l’application ».");return;}installPrompt.prompt();await installPrompt.userChoice;installPrompt=null;installButton.hidden=true;});
 window.addEventListener("appinstalled",()=>{installButton.hidden=true;});
-if("serviceWorker" in navigator&&location.protocol==="https:")window.addEventListener("load",()=>navigator.serviceWorker.register("/le-grand-partage/service-worker.js?v=push-v48-vapid-20261125").catch(()=>{}));
+if("serviceWorker" in navigator&&location.protocol==="https:")window.addEventListener("load",()=>navigator.serviceWorker.register("/le-grand-partage/service-worker.js?v=push-v49-password-change-20261125").catch(()=>{}));
 </script>
 </body></html>
