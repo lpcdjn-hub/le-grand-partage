@@ -1,4 +1,4 @@
-const CACHE_NAME = "grand-partage-shell-v49-password-change-20261125";
+const CACHE_NAME = "grand-partage-shell-v50-password-current-20261125";
 const SHELL = [
   "/le-grand-partage/",
   "/le-grand-partage/manifest.webmanifest?v=official-image-20261123-1",
