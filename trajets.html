@@ -66,18 +66,23 @@ function attachCitySuggestions(citySelector,countrySelector,listSelector){
   clearTimeout(cityLookupTimers.get(citySelector));
   cityLookupTimers.set(citySelector,setTimeout(async()=>{
    try{
-    const url="https://photon.komoot.io/api/?q="+encodeURIComponent(query)+"&limit=7&lang="+encodeURIComponent((navigator.language||"fr").split("-")[0]);
+    const url="https://photon.komoot.io/api/?q="+encodeURIComponent(query)+"&limit=15&lang="+encodeURIComponent((navigator.language||"fr").split("-")[0]);
     const response=await fetch(url,{headers:{"Accept":"application/json"}});
     if(!response.ok)throw new Error("Recherche d’adresse indisponible");
     const payload=await response.json();list.replaceChildren();
-    (payload.features||[]).forEach(item=>{
+    const priority=["city","town","village","hamlet","suburb","quarter","neighbourhood","street","house","locality"];
+    const features=payload.features||[];
+    features.sort((x,y)=>{const ax=priority.indexOf((x.properties||{}).osm_value),ay=priority.indexOf((y.properties||{}).osm_value);return (ax<0?99:ax)-(ay<0?99:ay);});
+    features.forEach(item=>{
      const a=item.properties||{};
      const name=a.name||a.street||a.city||a.locality;
      const country=a.country||"";
      if(!name||!country)return;
-     const label=[a.name,a.housenumber,a.street,a.postcode,a.city||a.locality,a.state,country].filter(Boolean).join(", ");
+     const label=[name,a.housenumber,a.street&&a.street!==name?a.street:"",a.postcode,a.city||a.town||a.village||a.hamlet||a.locality,a.state,country].filter(Boolean).join(", ");
+     if(resultsByLabel.has(label))return;
      resultsByLabel.set(label,{name:label,country,region:a.state||""});
-     const option=document.createElement("option");option.value=label;list.appendChild(option);
+     const kind=a.osm_value||a.type||"";
+     const option=document.createElement("option");option.value=label;option.label=kind?kind.replace(/_/g," ")+" · "+label:label;list.appendChild(option);
     });
    }catch(error){console.warn("Suggestions de villes:",error);}
   },350));
