@@ -16,6 +16,8 @@ create table if not exists public.listings (
   title text not null check (char_length(title) between 3 and 90),
   category text not null check (category in ('Maison','Vêtements','Enfants','Loisirs','Bricolage','Autre')),
   city text not null,
+  country text,
+  region text,
   description text not null default '',
   image_url text,
   status text not null default 'available' check (status in ('available','reserved','given')),
