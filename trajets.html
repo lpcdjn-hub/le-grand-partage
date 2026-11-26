@@ -54,8 +54,39 @@ function date(t){return new Date(t).toLocaleString("fr-FR",{dateStyle:"medium",t
 async function geocodePlace(query){const url="https://photon.komoot.io/api/?q="+encodeURIComponent(query)+"&limit=5&lang="+encodeURIComponent((navigator.language||"fr").split("-")[0]);const response=await fetch(url);if(!response.ok)throw new Error("Recherche de lieu indisponible");const features=(await response.json()).features||[];const item=features.find(x=>x.geometry?.coordinates?.length===2);if(!item)throw new Error("Lieu introuvable. Choisissez une suggestion ou ajoutez le pays.");const p=item.properties||{},coords=item.geometry.coordinates;return {lon:Number(coords[0]),lat:Number(coords[1]),country:p.country||"",region:p.state||""};}
 function distanceKm(a,b){const rad=x=>x*Math.PI/180,R=6371,dLat=rad(b.lat-a.lat),dLon=rad(b.lon-a.lon),v=Math.sin(dLat/2)**2+Math.cos(rad(a.lat))*Math.cos(rad(b.lat))*Math.sin(dLon/2)**2;return 2*R*Math.asin(Math.sqrt(v));}
 let searchOrigin=null;
-function attachSearchAutocomplete(inputId,listId){const input=$(inputId),list=$(listId);let timer;input.addEventListener("input",()=>{clearTimeout(timer);const q=input.value.trim();if(q.length<2){list.replaceChildren();return;}timer=setTimeout(async()=>{try{const url="https://photon.komoot.io/api/?q="+encodeURIComponent(q)+"&limit=15&lang="+encodeURIComponent((navigator.language||"fr").split("-")[0]);const res=await fetch(url);if(!res.ok)return;const data=await res.json();list.replaceChildren();const seen=new Set();const features=data.features||[];const priority=["city","town","village","hamlet","suburb","quarter","neighbourhood","street","house","locality"];features.sort((a,b)=>{const av=priority.indexOf((a.properties||{}).osm_value),bv=priority.indexOf((b.properties||{}).osm_value);return (av<0?99:av)-(bv<0?99:bv);});features.forEach(f=>{const p=f.properties||{},kind=p.osm_value||p.type||"",name=p.name||p.street||p.city||p.locality;if(!name)return;const locality=p.city||p.town||p.village||p.hamlet||p.locality||p.district;const label=[name,p.housenumber,p.street&&p.street!==name?p.street:"",p.postcode,locality&&locality!==name?locality:"",p.state,p.country].filter(Boolean).join(", ");if(!label||seen.has(label))return;seen.add(label);const opt=document.createElement("option");opt.value=label;opt.label=kind?kind.replace(/_/g," ")+" · "+label:label;list.appendChild(opt);});}catch(e){console.warn("Suggestions de villes, villages et lieux",e);}},300);});}
-attachSearchAutocomplete("#filterFrom","#searchFromOptions");attachSearchAutocomplete("#filterTo","#searchToOptions");
+function attachSearchAutocomplete(inputId,listId,countryId){
+ const input=$(inputId),list=$(listId),country=countryId?$(countryId):null;
+ let timer=null,resultsByLabel=new Map();
+ async function lookup(){
+  const q=input.value.trim();resultsByLabel.clear();
+  if(q.length<2){list.replaceChildren();return;}
+  try{
+   const url="https://photon.komoot.io/api/?q="+encodeURIComponent(q)+"&limit=20&lang="+encodeURIComponent((navigator.language||"fr").split("-")[0]);
+   const response=await fetch(url,{headers:{"Accept":"application/json"}});
+   if(!response.ok)throw new Error("Recherche de lieu indisponible");
+   const data=await response.json();list.replaceChildren();
+   const priority=["city","town","village","hamlet","suburb","quarter","neighbourhood","locality","street","house"];
+   const features=data.features||[];
+   features.sort((a,b)=>{const x=priority.indexOf((a.properties||{}).osm_value),y=priority.indexOf((b.properties||{}).osm_value);return (x<0?99:x)-(y<0?99:y);});
+   for(const feature of features){
+    const p=feature.properties||{},name=p.name||p.street||p.city||p.locality;
+    if(!name)continue;
+    const locality=p.city||p.town||p.village||p.hamlet||p.locality||p.district;
+    const label=[name,p.housenumber,p.street&&p.street!==name?p.street:"",p.postcode,locality&&locality!==name?locality:"",p.state,p.country].filter(Boolean).join(", ");
+    if(resultsByLabel.has(label))continue;
+    resultsByLabel.set(label,{country:p.country||"",region:p.state||""});
+    const option=document.createElement("option");option.value=label;
+    const kind=p.osm_value||p.type||"";option.label=kind?kind.replace(/_/g," ")+" · "+label:label;list.appendChild(option);
+   }
+  }catch(error){console.warn("Suggestions de destination/depart:",error);}
+ }
+ function applySelection(){const chosen=resultsByLabel.get(input.value.trim());if(chosen&&country&&chosen.country)country.value=chosen.country;}
+ input.addEventListener("input",()=>{clearTimeout(timer);timer=setTimeout(lookup,300);});
+ input.addEventListener("change",applySelection);
+ input.addEventListener("blur",applySelection);
+}
+attachSearchAutocomplete("#filterFrom","#searchFromOptions","#filterFromCountry");
+attachSearchAutocomplete("#filterTo","#searchToOptions","#filterToCountry");
 const cityLookupTimers=new Map();
 function attachCitySuggestions(citySelector,countrySelector,listSelector){
  const city=$(citySelector),country=$(countrySelector),list=$(listSelector);
