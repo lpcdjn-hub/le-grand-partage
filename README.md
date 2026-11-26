@@ -22,3 +22,7 @@ Si la confirmation d'adresse e-mail est activée dans Supabase Auth, les nouveau
 - Les messages privés, la gestion complète du profil, la modification/suppression des annonces et les signalements ne sont pas encore intégrés à l'interface.
 - Les fonctions doivent encore être testées en conditions réelles avec deux comptes.
 - La PWA et le déploiement GitHub Pages doivent être vérifiés après publication.
+
+
+## Localisation mondiale
+Les annonces acceptent une ville, un pays et une région/État facultative. La recherche publique permet de filtrer les annonces par pays, par ville ou dans le monde entier. La géolocalisation GPS reste facultative et ne publie jamais l'adresse exacte d'un membre. Les annonces historiques sans pays restent visibles pendant la transition.
