@@ -13,11 +13,11 @@
 <main class="wrap layout"><section><div class="panel" style="margin-bottom:16px"><h2>🔎 Trouver un trajet</h2><div class="form"><label>Ville de départ<input id="filterFrom" class="field" placeholder="Ex. Santiago"></label><label>Pays de départ<input id="filterFromCountry" class="field" placeholder="Ex. Chili"></label><label>Ville de destination<input id="filterTo" class="field" placeholder="Ex. Marseille"></label><label>Pays de destination<input id="filterToCountry" class="field" placeholder="Ex. France"></label><button class="btn light" id="filterBtn">Rechercher</button></div></div><div class="rides" id="rides"><div class="empty">Chargement des trajets…</div></div>
 <div class="panel" style="margin-top:18px"><h2>📨 Mes demandes de place</h2><div id="myRequests" class="notice">Connectez-vous pour consulter vos demandes et les réponses des conducteurs.</div></div></section>
 <aside class="panel"><h2>➕ Proposer un trajet</h2><div id="authState" class="status">Vérification de la connexion…</div><form id="rideForm" class="form">
-<label>Ville de départ<input class="field" name="departure_city" maxlength="100" required placeholder="Ex. Santiago"></label>
-<label>Pays de départ<input class="field" name="departure_country" maxlength="100" required list="countryOptions" placeholder="Ex. Chili"></label>
+<label>Ville de départ<input class="field" id="departureCity" name="departure_city" maxlength="100" required list="departureCityOptions" autocomplete="off" placeholder="Commencez à saisir une ville"><datalist id="departureCityOptions"></datalist></label>
+<label>Pays de départ<input class="field" id="departureCountry" name="departure_country" maxlength="100" required list="countryOptions" placeholder="Pays proposé automatiquement"></label>
 <label>Région / État de départ (facultatif)<input class="field" name="departure_region" maxlength="100" placeholder="Ex. Région métropolitaine de Santiago"></label>
-<label>Ville d’arrivée<input class="field" name="arrival_city" maxlength="100" required placeholder="Ex. Marseille"></label>
-<label>Pays d’arrivée<input class="field" name="arrival_country" maxlength="100" required list="countryOptions" placeholder="Ex. France"></label>
+<label>Ville d’arrivée<input class="field" id="arrivalCity" name="arrival_city" maxlength="100" required list="arrivalCityOptions" autocomplete="off" placeholder="Commencez à saisir une ville"><datalist id="arrivalCityOptions"></datalist></label>
+<label>Pays d’arrivée<input class="field" id="arrivalCountry" name="arrival_country" maxlength="100" required list="countryOptions" placeholder="Pays proposé automatiquement"></label>
 <label>Région / État d’arrivée (facultatif)<input class="field" name="arrival_region" maxlength="100" placeholder="Ex. Provence-Alpes-Côte d’Azur"></label>
 <datalist id="countryOptions"><option value="France"><option value="Chili"><option value="Espagne"><option value="Italie"><option value="Belgique"><option value="Suisse"><option value="Portugal"><option value="Allemagne"><option value="Maroc"><option value="Canada"><option value="États-Unis"><option value="Royaume-Uni"></datalist>
 <label>Villes traversées (facultatif)<input class="field" name="stops" maxlength="500" placeholder="Ex. Carpentras, Monteux"></label>
@@ -31,6 +31,7 @@
 <footer><div class="wrap">Le Grand Partage — Donner · Partager · Recommencer · Service gratuit, sans paiement ni commission.</div></footer>
 <script>
 const SUPABASE_URL="https://lioydkmparojxbsaydzo.supabase.co";
+const GEO_URL="https://nominatim.openstreetmap.org";
 const SUPABASE_PUBLISHABLE_KEY="sb_publishable_009ydpNaq-NVY0f6kaJ7jQ_83os7Il8";
 if(!window.supabase?.createClient){document.addEventListener("DOMContentLoaded",()=>{const el=document.querySelector("#rides");if(el)el.innerHTML='<div class="empty">Connexion technique indisponible. Rechargez la page ou réessayez dans quelques instants.</div>';});throw new Error("Supabase JS non chargé");}
 const db=window.supabase.createClient(SUPABASE_URL,SUPABASE_PUBLISHABLE_KEY);
@@ -50,6 +51,42 @@ async function sendPhoneAlert(event_type,event_id){
  }catch(error){console.warn("Alerte téléphone indisponible:",error);}
 }
 function date(t){return new Date(t).toLocaleString("fr-FR",{dateStyle:"medium",timeStyle:"short"});}
+const cityLookupTimers=new Map();
+function attachCitySuggestions(citySelector,countrySelector,listSelector){
+ const city=$(citySelector),country=$(countrySelector),list=$(listSelector);
+ let resultsByLabel=new Map();
+ city.addEventListener("input",()=>{
+  const query=city.value.trim();resultsByLabel.clear();
+  if(query.length<2){list.replaceChildren();return;}
+  clearTimeout(cityLookupTimers.get(citySelector));
+  cityLookupTimers.set(citySelector,setTimeout(async()=>{
+   try{
+    const url=GEO_URL+"/search?format=jsonv2&addressdetails=1&accept-language="+encodeURIComponent(navigator.language||"fr")+"&limit=7&featuretype=city&q="+encodeURIComponent(query);
+    const response=await fetch(url,{headers:{"Accept":"application/json"}});
+    if(!response.ok)throw new Error("Recherche de ville indisponible");
+    const results=await response.json();list.replaceChildren();
+    results.forEach(item=>{
+     const a=item.address||{};
+     const name=a.city||a.town||a.village||a.municipality||a.hamlet||item.name;
+     if(!name||!a.country)return;
+     const label=name+(a.state?", "+a.state:"")+", "+a.country;
+     resultsByLabel.set(label,{name,country:a.country,region:a.state||""});
+     const option=document.createElement("option");option.value=label;list.appendChild(option);
+    });
+   }catch(error){console.warn("Suggestions de villes:",error);}
+  },350));
+ });
+ city.addEventListener("change",()=>{
+  const selected=resultsByLabel.get(city.value.trim());
+  if(selected){city.value=selected.name;country.value=selected.country;}
+ });
+ city.addEventListener("blur",()=>{
+  const selected=resultsByLabel.get(city.value.trim());
+  if(selected){city.value=selected.name;country.value=selected.country;}
+ });
+}
+attachCitySuggestions("#departureCity","#departureCountry","#departureCityOptions");
+attachCitySuggestions("#arrivalCity","#arrivalCountry","#arrivalCityOptions");
 async function loadRides(){
  const el=$("#rides");el.innerHTML='<div class="empty">Chargement des trajets…</div>';
  let finished=false;
